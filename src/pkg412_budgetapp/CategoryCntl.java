@@ -5,6 +5,9 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aim5627
@@ -15,39 +18,79 @@ public class CategoryCntl {
     public String username;
     CategoryNavigationUI theCatNavUI;
     CategoryUI theCategoryUI;
+    ArrayList<Budget> currentBudgetList;
+    ArrayList<Category> categoryListAL;
+    CategoryList theCategoryList;
+    Category theCategory;
     
-    public CategoryCntl(String u) { //NavigationCntl p,
+    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl) { //NavigationCntl p,
         System.out.println("CategoryCntl.constructor1");
-        //parent = p;
+        parent = p;
         username = u;
+        currentBudgetList = bl;
         showCategoryNavigationUI();
+        
+        if(theCategoryList == null)
+        {
+            categoryListAL = new ArrayList<Category>();
+            ArrayList<Transaction> t = new ArrayList<Transaction>();
+            theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategoryList = new CategoryList(categoryListAL);
+        }
     }
     
-    public CategoryCntl(String u, int i ) {
+    public CategoryCntl(String u, int i) {
         System.out.println("CategoryCntl.constructor2");
         username = u;
-
     }
     
     public void showCategoryNavigationUI()
     {
         System.out.println("CategoryCntl.showCatNavUI");
-        theCatNavUI = new CategoryNavigationUI(username);
+        theCatNavUI = new CategoryNavigationUI(this, username);
         theCatNavUI.setVisible(true);
     }
     
     public void showNewCategory()
     {
         System.out.println("CategoryCntl.showNewCategory");
-        theCategoryUI = new CategoryUI("new", username);
+        theCategoryUI = new CategoryUI(this, "new", username, currentBudgetList, theCategoryList.getCategories());
         theCategoryUI.setVisible(true);
     }
     
     public void showEditCategory()
     {
         System.out.println("CategoryCntl.showEditCategory");
-        theCategoryUI = new CategoryUI("edit", username);
+        theCategoryUI = new CategoryUI(this, "edit", username, currentBudgetList, theCategoryList.getCategories());
         theCategoryUI.setVisible(true);
     }
+    
+    public void toNavigationUI()
+    {
+        System.out.println("CategoryCntl.toNavigationUI");
+        parent.categoryToNav(this, username, theCategoryList.getCategories());
+    }
+    
+    public void addNewCategory(Category c)
+    {
+        System.out.println("CategoryCntl.addNewCategory");
+        theCategoryList.addCategory(c);
+        JOptionPane.showMessageDialog(null, "The category was created", "Create Category", JOptionPane.INFORMATION_MESSAGE);
+        toNavigationUI();
+    }
+    
+    public void editCategory(ArrayList<Category> c)
+    {
+        System.out.println("CategoryCntl.addNewCategory");
+        theCategoryList.setCategories(c);
+        JOptionPane.showMessageDialog(null, "The category was edited", "Category Edited", JOptionPane.INFORMATION_MESSAGE);
+        toNavigationUI();
+    }
+        
     
 }

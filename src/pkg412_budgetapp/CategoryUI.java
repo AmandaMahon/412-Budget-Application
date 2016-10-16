@@ -5,6 +5,9 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author aim5627
@@ -13,6 +16,10 @@ public class CategoryUI extends javax.swing.JFrame {
 
     String username;
     String viewType;
+    CategoryCntl parent;
+    ArrayList<Budget> currentBL;
+    ArrayList<Category> currentCL;
+    int position;
     /**
      * Creates new form CategoryNavigationUI
      */
@@ -21,20 +28,38 @@ public class CategoryUI extends javax.swing.JFrame {
         initComponents();
     }
     
-     public CategoryUI(String v, String u){
+     public CategoryUI(CategoryCntl p, String v, String u, ArrayList<Budget> BL, ArrayList<Category> CL){
         System.out.println("CategoryUI.constructor2");       
-         initComponents();
+        initComponents();
+        parent = p;
         username = u;
         viewType = v;
+        currentBL = BL;
+        currentCL = CL;
+        
+        String[] bNames = new String[currentBL.size()];
+        for(int i = 0; i<currentBL.size(); i++)
+        {
+            bNames[i] = currentBL.get(i).getName();
+        }
+        budgetDropdown.setModel(new JComboBox<>(bNames).getModel());
         
         if(viewType.equals("new"))
         {
             categoryTitleLbl.setText("New Category");
             categoryDropdown.setVisible(false);
+            selectCategoryLbl.setVisible(false);
+            selectCategoryBtn.setVisible(false);
         }
         else if(viewType.equals("edit"))
         {
             categoryTitleLbl.setText("Edit Category");
+            String[] cNames = new String[currentCL.size()];
+            for(int i = 0; i<currentCL.size(); i++)
+            {
+                cNames[i] = currentCL.get(i).getName();
+            }
+            categoryDropdown.setModel(new JComboBox<>(cNames).getModel());
         }
      }
 
@@ -58,6 +83,8 @@ public class CategoryUI extends javax.swing.JFrame {
         nameTb1 = new javax.swing.JTextField();
         budgetNameLbl = new javax.swing.JLabel();
         budgetDropdown = new javax.swing.JComboBox<>();
+        selectCategoryLbl = new javax.swing.JLabel();
+        selectCategoryBtn = new javax.swing.JButton();
 
         budgetTitleLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         budgetTitleLbl.setText("___ Budget");
@@ -68,8 +95,18 @@ public class CategoryUI extends javax.swing.JFrame {
         categoryTitleLbl.setText("___ Category");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         nameLbl.setText("Category Name");
 
@@ -80,6 +117,15 @@ public class CategoryUI extends javax.swing.JFrame {
         budgetNameLbl.setText("Budget Name");
 
         budgetDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        selectCategoryLbl.setText("Select Category");
+
+        selectCategoryBtn.setText("Get Info");
+        selectCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectCategoryBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,15 +146,18 @@ public class CategoryUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(nameLbl)
                                     .addComponent(amountLbl)
-                                    .addComponent(budgetNameLbl))
+                                    .addComponent(budgetNameLbl)
+                                    .addComponent(selectCategoryLbl))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(categoryDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(categoryDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(selectCategoryBtn)))
+                                .addGap(19, 19, 19)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,26 +167,70 @@ public class CategoryUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(categoryTitleLbl)
                     .addComponent(backBtn))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoryDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectCategoryLbl)
+                    .addComponent(selectCategoryBtn))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl)
-                    .addComponent(categoryDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amountLbl)
                     .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(budgetNameLbl)
-                    .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(budgetNameLbl))
+                .addGap(29, 29, 29)
                 .addComponent(saveBtn)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        parent.toNavigationUI();
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void selectCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCategoryBtnActionPerformed
+        String selectedCategory = categoryDropdown.getSelectedItem().toString();
+        for(int i = 0; i<currentCL.size(); i++)
+        {
+            String c = currentCL.get(i).getName();
+            if(selectedCategory.equals(c))
+            {
+                position = i;
+                nameTb1.setText(c);
+                amountTb.setText(String.valueOf(currentCL.get(i).getAmount()));
+                //intervalTb.setText(String.valueOf(currentCL.get(i).getIntervalPeriod()));
+                budgetDropdown.setSelectedItem(currentCL.get(i).getBudgetName());
+                break;
+            }
+        }
+    }//GEN-LAST:event_selectCategoryBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        if(viewType.equals("new"))
+        {
+            ArrayList<Transaction> t = new ArrayList<Transaction>();
+            //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+            parent.addNewCategory(new Category(nameTb1.getText(), Double.parseDouble(amountTb.getText()), budgetDropdown.getSelectedItem().toString(), t));
+            this.dispose();
+        }
+        else if(viewType.equals("edit"))
+        {
+            currentCL.get(position).setName(username);
+            currentCL.get(position).setAmount(Double.parseDouble(amountTb.getText()));
+            currentCL.get(position).setBudgetName(categoryDropdown.getSelectedItem().toString());
+            parent.editCategory(currentCL);
+            this.dispose();
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,5 +280,7 @@ public class CategoryUI extends javax.swing.JFrame {
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTb1;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JButton selectCategoryBtn;
+    private javax.swing.JLabel selectCategoryLbl;
     // End of variables declaration//GEN-END:variables
 }

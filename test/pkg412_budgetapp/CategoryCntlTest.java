@@ -5,6 +5,7 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +44,9 @@ public class CategoryCntlTest {
     @Test
     public void testShowCategoryNavigationUI() {
         System.out.println("showCategoryNavigationUI");
-        CategoryCntl instance = new CategoryCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showCategoryNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -55,7 +58,9 @@ public class CategoryCntlTest {
     @Test
     public void testShowNewCategory() {
         System.out.println("showNewCategory");
-        CategoryCntl instance =  new CategoryCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showNewCategory();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -67,8 +72,56 @@ public class CategoryCntlTest {
     @Test
     public void testShowEditCategory() {
         System.out.println("showEditCategory");
-        CategoryCntl instance = new CategoryCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showEditCategory();
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toNavigationUI method, of class CategoryCntl.
+     */
+    @Test
+    public void testToNavigationUI() {
+        System.out.println("toNavigationUI");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
+        instance.toNavigationUI();
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addNewCategory method, of class CategoryCntl.
+     */
+    @Test
+    public void testAddNewCategory() {
+        System.out.println("addNewCategory");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
+        instance.addNewCategory(c);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of editCategory method, of class CategoryCntl.
+     */
+    @Test
+    public void testEditCategory() {
+        System.out.println("editCategory");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
+        instance.editCategory(c);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

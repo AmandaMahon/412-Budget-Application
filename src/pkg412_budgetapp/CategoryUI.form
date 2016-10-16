@@ -50,17 +50,20 @@
                                   <Component id="nameLbl" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="amountLbl" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="budgetNameLbl" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="selectCategoryLbl" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="amountTb" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="nameTb1" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="categoryDropdown" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="budgetDropdown" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="nameTb1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="categoryDropdown" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="selectCategoryBtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -77,23 +80,28 @@
                   <Component id="categoryTitleLbl" min="-2" max="-2" attributes="0"/>
                   <Component id="backBtn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="categoryDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectCategoryLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectCategoryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="categoryDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nameTb1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="amountLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="amountTb" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="budgetNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="budgetDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="budgetNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -113,11 +121,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="nameLbl">
       <Properties>
@@ -167,6 +181,19 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="selectCategoryLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select Category"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="selectCategoryBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Get Info"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectCategoryBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

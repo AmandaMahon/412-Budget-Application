@@ -5,6 +5,7 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -69,6 +70,37 @@ public class NavigationCntlTest {
         System.out.println("showCategoryNavigationUI");
         NavigationCntl instance = new NavigationCntl("aim5627");
         instance.showCategoryNavigationUI();
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of budgetToNav method, of class NavigationCntl.
+     */
+    @Test
+    public void testBudgetToNav() {
+        System.out.println("budgetToNav");
+        NavigationCntl instance = new NavigationCntl("aim5627");
+        BudgetCntl bc = new BudgetCntl("aim5627", instance);
+        String u = "aim5627";
+        ArrayList<Budget> cbl = new ArrayList<Budget>();
+        instance.budgetToNav(bc, u, cbl);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of categoryToNav method, of class NavigationCntl.
+     */
+    @Test
+    public void testCategoryToNav() {
+        System.out.println("categoryToNav");
+        NavigationCntl instance = new NavigationCntl("aim5627");
+        ArrayList<Budget> cbl = new ArrayList<Budget>();
+        CategoryCntl cc = new CategoryCntl(instance, "aim5627", cbl);
+        String u = "aim5627";
+        ArrayList<Category> ccl = new ArrayList<Category>();
+        instance.categoryToNav(cc, u, ccl);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

@@ -5,6 +5,7 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,7 +44,8 @@ public class BudgetCntlTest {
     @Test
     public void testShowBudgetNavigationUI() {
         System.out.println("showBudgetNavigationUI");
-        BudgetCntl instance = new BudgetCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
         instance.showBudgetNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -55,7 +57,8 @@ public class BudgetCntlTest {
     @Test
     public void testShowNewBudgetUI() {
         System.out.println("showNewBudgetUI");
-        BudgetCntl instance = new BudgetCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
         instance.showNewBudgetUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -67,8 +70,72 @@ public class BudgetCntlTest {
     @Test
     public void testShowEditBudgetUI() {
         System.out.println("showEditBudgetUI");
-        BudgetCntl instance = new BudgetCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
         instance.showEditBudgetUI();
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addNewBudget method, of class BudgetCntl.
+     */
+    @Test
+    public void testAddNewBudget() {
+        System.out.println("addNewBudget");
+        ArrayList<Category> c = new ArrayList<Category>();
+        Budget b = new Budget("Budget Test 1", 1000.00, 14, c);
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        instance.addNewBudget(b);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of editBudget method, of class BudgetCntl.
+     */
+    @Test
+    public void testEditBudget() {
+        System.out.println("editBudget");
+        ArrayList<Budget> bl = new ArrayList<Budget>();
+        ArrayList<Category> c = new ArrayList<Category>();
+        Budget b = new Budget("Budget Test 1", 1000.00, 14, c);
+        bl.add(b);
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        instance.editBudget(bl);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toNavigationUI method, of class BudgetCntl.
+     */
+    @Test
+    public void testToNavigationUI() {
+        System.out.println("toNavigationUI");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        instance.toNavigationUI();
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCurrentBudgetList method, of class BudgetCntl.
+     */
+    @Test
+    public void testGetCurrentBudgetList() {
+        System.out.println("getCurrentBudgetList");
+        NavigationCntl p = new NavigationCntl("aim5627");
+        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        ArrayList<Budget> expResult = new ArrayList<Budget>();
+        ArrayList<Category> c = new ArrayList<Category>();
+        Budget b = new Budget("Budget Test 1", 1000.00, 14, c);
+        expResult.add(b);
+        ArrayList<Budget> result = instance.getCurrentBudgetList();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

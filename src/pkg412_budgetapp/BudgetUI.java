@@ -5,6 +5,9 @@
  */
 package pkg412_budgetapp;
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author aim5627
@@ -13,6 +16,9 @@ public class BudgetUI extends javax.swing.JFrame {
 
     String viewType;
     String username;
+    ArrayList<Budget> budgetList;
+    BudgetCntl parent;
+    int position;
     
     /**
      * Creates new form BudgetUI
@@ -20,24 +26,70 @@ public class BudgetUI extends javax.swing.JFrame {
     public BudgetUI() {
         initComponents();
     }
-    
-    public BudgetUI(String v, String u)
+   
+    //new budget
+    public BudgetUI(BudgetCntl p, String v, String u)
     {
+        System.out.println("BudgetUI.constructor1");
         initComponents();
-        System.out.println("BudgetUI.constructor");
-        viewType = v;
+        parent = p;
         username = u;
+        viewType = v;
+        budgetDropdown.setVisible(false);
+        selectBudgetLbl.setVisible(false);
+        getBudgetBtn.setVisible(false);
+        budgetTitleLbl.setText("New Budget");
+    }
+    
+    //edit budget
+    public BudgetUI(BudgetCntl p, String v, String u, ArrayList<Budget> bl)
+    {
+        System.out.println("BudgetUI.constructor2");
+        initComponents();
+        parent = p;
+        username = u;
+        viewType = v;
+        budgetList = bl;
         
         if(v.equals("new"))
         {
             budgetDropdown.setVisible(false);
+            selectBudgetLbl.setVisible(false);
+            getBudgetBtn.setVisible(false);
             budgetTitleLbl.setText("New Budget");
         }
         else if(v.equals("edit"))
         {
             budgetTitleLbl.setText("Edit Budget");
+            String[] bNames = new String[bl.size()];
+            for(int i = 0; i<bl.size(); i++)
+            {
+                bNames[i] = bl.get(i).getName();
+            }
+
+            //budgetDropdown = new JComboBox<>(bNames);
+            budgetDropdown.setModel(new JComboBox<>(bNames).getModel());
         }
+       
     }
+    
+//    public BudgetUI(String v, String u)
+//    {
+//        initComponents();
+//        System.out.println("BudgetUI.constructor");
+//        viewType = v;
+//        username = u;
+//        
+//        if(v.equals("new"))
+//        {
+//            budgetDropdown.setVisible(false);
+//            budgetTitleLbl.setText("New Budget");
+//        }
+//        else if(v.equals("edit"))
+//        {
+//            budgetTitleLbl.setText("Edit Budget");
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +111,8 @@ public class BudgetUI extends javax.swing.JFrame {
         nameTb1 = new javax.swing.JTextField();
         intervalLbl = new javax.swing.JLabel();
         intervalTb = new javax.swing.JTextField();
+        getBudgetBtn = new javax.swing.JButton();
+        selectBudgetLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +120,18 @@ public class BudgetUI extends javax.swing.JFrame {
         budgetTitleLbl.setText("___ Budget");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         nameLbl.setText("Budget Name");
 
@@ -76,6 +140,15 @@ public class BudgetUI extends javax.swing.JFrame {
         amountLbl.setText("Total Budget Amount");
 
         intervalLbl.setText("Interval Period (In days)");
+
+        getBudgetBtn.setText("Get Info");
+        getBudgetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getBudgetBtnActionPerformed(evt);
+            }
+        });
+
+        selectBudgetLbl.setText("Select Budget");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,24 +161,25 @@ public class BudgetUI extends javax.swing.JFrame {
                 .addComponent(backBtn)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nameLbl)
+                    .addComponent(amountLbl)
+                    .addComponent(intervalLbl)
+                    .addComponent(selectBudgetLbl))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveBtn))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nameLbl)
-                            .addComponent(amountLbl)
-                            .addComponent(intervalLbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(getBudgetBtn)))
+                .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveBtn)
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -115,26 +189,70 @@ public class BudgetUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backBtn)
                     .addComponent(budgetTitleLbl))
-                .addGap(46, 46, 46)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(getBudgetBtn)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectBudgetLbl)))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLbl)
-                    .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLbl))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amountLbl)
-                    .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(intervalLbl)
-                    .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intervalLbl))
+                .addGap(14, 14, 14)
                 .addComponent(saveBtn)
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void getBudgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBudgetBtnActionPerformed
+        String selectedBudget = budgetDropdown.getSelectedItem().toString();
+        for(int i = 0; i<budgetList.size(); i++)
+        {
+            String b = budgetList.get(i).getName();
+            if(selectedBudget.equals(b))
+            {
+                position = i;
+                nameTb1.setText(b);
+                amountTb.setText(String.valueOf(budgetList.get(i).getAmount()));
+                intervalTb.setText(String.valueOf(budgetList.get(i).getIntervalPeriod()));
+                break;
+            }
+        }
+    }//GEN-LAST:event_getBudgetBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        if(viewType.equals("new"))
+        {
+            ArrayList<Category> c = new ArrayList<Category>();
+            //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+            parent.addNewBudget(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+            this.dispose();
+        }
+        else if(viewType.equals("edit"))
+        {
+            budgetList.get(position).setName(username);
+            budgetList.get(position).setAmount(Double.parseDouble(amountTb.getText()));
+            budgetList.get(position).setIntervalPeriod(Integer.parseInt(intervalTb.getText()));
+            parent.editBudget(budgetList);
+            this.dispose();
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        parent.toNavigationUI();
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,11 +295,13 @@ public class BudgetUI extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox<String> budgetDropdown;
     private javax.swing.JLabel budgetTitleLbl;
+    private javax.swing.JButton getBudgetBtn;
     private javax.swing.JLabel intervalLbl;
     private javax.swing.JTextField intervalTb;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTb1;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JLabel selectBudgetLbl;
     // End of variables declaration//GEN-END:variables
 }

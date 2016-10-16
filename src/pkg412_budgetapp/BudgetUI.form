@@ -35,30 +35,29 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="nameLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="amountLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="intervalLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectBudgetLbl" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="intervalTb" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="amountTb" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="nameTb1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="nameLbl" min="-2" max="-2" attributes="0"/>
-                          <Component id="amountLbl" min="-2" max="-2" attributes="0"/>
-                          <Component id="intervalLbl" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="budgetDropdown" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="amountTb" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="intervalTb" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="nameTb1" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="budgetDropdown" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="getBudgetBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,23 +70,30 @@
                   <Component id="backBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="budgetTitleLbl" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="getBudgetBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="budgetDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectBudgetLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="budgetDropdown" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nameTb1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="amountLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="amountTb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="amountLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="intervalLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="intervalTb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="intervalLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
@@ -107,11 +113,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="nameLbl">
       <Properties>
@@ -148,6 +160,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="intervalTb">
+    </Component>
+    <Component class="javax.swing.JButton" name="getBudgetBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Get Info"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getBudgetBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="selectBudgetLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select Budget"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

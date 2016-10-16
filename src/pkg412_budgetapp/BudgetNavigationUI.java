@@ -78,15 +78,15 @@ public class BudgetNavigationUI extends javax.swing.JFrame {
 
     private void createBudgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBudgetBtnActionPerformed
         System.out.println("BudgetNavigationUI.createBudgetBtnActionPerformed");
-        BudgetCntl theBudgetCntl = new BudgetCntl(username, 1);
-        theBudgetCntl.showNewBudgetUI();
+        //BudgetCntl theBudgetCntl = new BudgetCntl(username, 1);
+        parent.showNewBudgetUI();
         this.setVisible(false);
     }//GEN-LAST:event_createBudgetBtnActionPerformed
 
     private void editBudgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBudgetBtnActionPerformed
         System.out.println("BudgetNavigationUI.editBudgetBtnActionPerformed");
-        BudgetCntl theBudgetCntl = new BudgetCntl(username, 1);
-        theBudgetCntl.showEditBudgetUI();
+        //BudgetCntl theBudgetCntl = new BudgetCntl(username, 1);
+        parent.showEditBudgetUI();
         this.setVisible(false);
     }//GEN-LAST:event_editBudgetBtnActionPerformed
 
