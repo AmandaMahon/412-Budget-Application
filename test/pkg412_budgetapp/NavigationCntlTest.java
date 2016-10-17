@@ -96,8 +96,16 @@ public class NavigationCntlTest {
     public void testCategoryToNav() {
         System.out.println("categoryToNav");
         NavigationCntl instance = new NavigationCntl("aim5627");
-        ArrayList<Budget> cbl = new ArrayList<Budget>();
-        CategoryCntl cc = new CategoryCntl(instance, "aim5627", cbl);
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
+        NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
+        CategoryCntl cc = new CategoryCntl(p, "aim5627", b);
         String u = "aim5627";
         ArrayList<Category> ccl = new ArrayList<Category>();
         instance.categoryToNav(cc, u, ccl);
