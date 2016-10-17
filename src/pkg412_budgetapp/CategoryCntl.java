@@ -32,9 +32,10 @@ public class CategoryCntl {
         
         if(theCategoryList == null)
         {
+            // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
             categoryListAL = new ArrayList<Category>();
             ArrayList<Transaction> t = new ArrayList<Transaction>();
-            theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
+            Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
             categoryListAL.add(theCategory);
             theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
             categoryListAL.add(theCategory);

@@ -45,7 +45,14 @@ public class CategoryCntlTest {
     public void testShowCategoryNavigationUI() {
         System.out.println("showCategoryNavigationUI");
         NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showCategoryNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
@@ -59,7 +66,14 @@ public class CategoryCntlTest {
     public void testShowNewCategory() {
         System.out.println("showNewCategory");
         NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showNewCategory();
         // TODO review the generated test code and remove the default call to fail.
@@ -73,7 +87,14 @@ public class CategoryCntlTest {
     public void testShowEditCategory() {
         System.out.println("showEditCategory");
         NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.showEditCategory();
         // TODO review the generated test code and remove the default call to fail.
@@ -87,7 +108,14 @@ public class CategoryCntlTest {
     public void testToNavigationUI() {
         System.out.println("toNavigationUI");
         NavigationCntl p = new NavigationCntl("aim5627");
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
+        Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.toNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
@@ -104,6 +132,10 @@ public class CategoryCntlTest {
         Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         NavigationCntl p = new NavigationCntl("aim5627");
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
         instance.addNewCategory(c);
         // TODO review the generated test code and remove the default call to fail.
@@ -117,11 +149,16 @@ public class CategoryCntlTest {
     public void testEditCategory() {
         System.out.println("editCategory");
         ArrayList<Transaction> t = new ArrayList<Transaction>();
+        t.add(new Transaction());
         Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         NavigationCntl p = new NavigationCntl("aim5627");
         ArrayList<Budget> b = new ArrayList<Budget>();
+        ArrayList<Category> list = new ArrayList<Category>();
+        list.add(c);
+        b.add(new Budget("Budget Test 1", 1000.00, 14, list));
+        b.add(new Budget("Budget Test 2", 2000.00, 13, list));
         CategoryCntl instance = new CategoryCntl(p, "aim5627", b);
-        instance.editCategory(c);
+        instance.editCategory(list);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
