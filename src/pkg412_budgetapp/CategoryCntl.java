@@ -92,6 +92,18 @@ public class CategoryCntl {
         JOptionPane.showMessageDialog(null, "The category was edited", "Category Edited", JOptionPane.INFORMATION_MESSAGE);
         toNavigationUI();
     }
+    
+    public ArrayList<Category> getCurrentCategoryList()
+    {
+        System.out.println("CategoryCntl.getCurrentCategoryList");
+        return theCategoryList.getCategories();
+    }
+    
+    public void setCurrentCategoryList(ArrayList<Category> cAL)
+    {
+        System.out.println("CategoryCntl.setCurrentCategoryList");
+        theCategoryList.setCategories(cAL);
+    }
         
     
 }

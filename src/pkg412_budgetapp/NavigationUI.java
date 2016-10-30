@@ -59,6 +59,11 @@ public class NavigationUI extends javax.swing.JFrame {
         });
 
         expensesBtn.setText("Manage Expenses");
+        expensesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expensesBtnActionPerformed(evt);
+            }
+        });
 
         spendingBtn.setText("View Spending Data");
 
@@ -133,6 +138,13 @@ public class NavigationUI extends javax.swing.JFrame {
         theNavigationCntl.showCategoryNavigationUI();
         this.setVisible(false);
     }//GEN-LAST:event_categoriesBtnActionPerformed
+
+    private void expensesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensesBtnActionPerformed
+        System.out.println("NavigationUI.expensesBtnActionPerformed");
+        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        theNavigationCntl.showTransactionUI();
+        this.setVisible(false);
+    }//GEN-LAST:event_expensesBtnActionPerformed
 
     /**
      * @param args the command line arguments

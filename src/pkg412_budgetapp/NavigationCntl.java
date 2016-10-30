@@ -18,6 +18,7 @@ public class NavigationCntl {
     public CategoryCntl theCategoryCntl;
     public ArrayList<Budget> currentBudgetList;
     public ArrayList<Category> currentCategoryList;
+    public TransactionCntl theTransactionCntl;
     
     public NavigationCntl(String u){
         System.out.println("NavigationCntl.constructor1");
@@ -72,6 +73,39 @@ public class NavigationCntl {
         theCategoryCntl = cc;
         username = u;
         currentCategoryList = ccl;
+        showNavigationUI();
+    }
+    
+    public void showTransactionUI()
+    {
+        System.out.println("NavigationCntl.showTransactionUI");
+        
+        if(currentBudgetList == null)
+        {
+            if(theBudgetCntl == null)
+            {
+                theBudgetCntl = new BudgetCntl(username, this);
+            }
+            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+        }
+
+        if(currentCategoryList == null)
+        {
+            if(theCategoryCntl == null)
+            {
+                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList);
+            }
+            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+        }
+        
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList);
+    }
+    
+    public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL)
+    {
+        theTransactionCntl = transCntl;
+        currentCategoryList = cAL;
+        theCategoryCntl.setCurrentCategoryList(cAL);
         showNavigationUI();
     }
 }
