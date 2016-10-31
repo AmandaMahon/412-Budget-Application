@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author aim5627
+ * @author aim5627, lvw5264
  */
 public class NavigationCntlTest {
     
@@ -97,7 +97,7 @@ public class NavigationCntlTest {
         System.out.println("categoryToNav");
         NavigationCntl instance = new NavigationCntl("aim5627");
         ArrayList<Transaction> t = new ArrayList<Transaction>();
-        t.add(new Transaction());
+        t.add(new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato."));
         Category c = new Category("Category Test 1", 500, "Test Budget 1", t);
         NavigationCntl p = new NavigationCntl("aim5627");
         ArrayList<Budget> b = new ArrayList<Budget>();

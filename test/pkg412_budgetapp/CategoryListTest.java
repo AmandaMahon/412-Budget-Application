@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author aim5627
+ * @author aim5627, lvw5264
  */
 public class CategoryListTest {
     
@@ -45,7 +45,7 @@ public class CategoryListTest {
     public void testSetCategories() {
         System.out.println("setCategories");
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category cOb = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> c = new ArrayList<Category>();
@@ -66,7 +66,7 @@ public class CategoryListTest {
     public void testGetCategories() {
         System.out.println("getCategories");
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category cOb = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> c = new ArrayList<Category>();
@@ -92,7 +92,7 @@ public class CategoryListTest {
     public void testAddCategory() {
         System.out.println("addCategory");
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -116,7 +116,7 @@ public class CategoryListTest {
     public void testRemoveCategory() {
         System.out.println("removeCategory");
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category cOb = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> c = new ArrayList<Category>();

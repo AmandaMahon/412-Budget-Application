@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author aim5627
+ * @author aim5627, lvw5264
  */
 public class BudgetTest {
     
@@ -46,7 +46,7 @@ public class BudgetTest {
         System.out.println("setName");
         String n = "Amanda";
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -66,7 +66,7 @@ public class BudgetTest {
         System.out.println("setAmount");
         double a = 1000.0;
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -86,7 +86,7 @@ public class BudgetTest {
         System.out.println("setIntervalPeriod");
         int IP = 14;
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -106,7 +106,7 @@ public class BudgetTest {
         System.out.println("setCurrentAmount");
         double CA = 900.0;
 
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -126,7 +126,7 @@ public class BudgetTest {
         System.out.println("setCategories");
         //ArrayList<Category> c = null;
 
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category cOb = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> c = new ArrayList<Category>();
@@ -145,7 +145,7 @@ public class BudgetTest {
     public void testGetName() {
         System.out.println("getName");
 
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -166,7 +166,7 @@ public class BudgetTest {
     public void testGetAmount() {
         System.out.println("getAmount");
        
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -187,7 +187,7 @@ public class BudgetTest {
     public void testGetIntervalPeriod() {
         System.out.println("getIntervalPeriod");
         
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -208,7 +208,7 @@ public class BudgetTest {
     public void testGetCurrentAmount() {
         System.out.println("getCurrentAmount");
 
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -229,7 +229,7 @@ public class BudgetTest {
     public void testGetCategories() {
         System.out.println("getCategories");
 
-        Transaction t = new Transaction();
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Home", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
