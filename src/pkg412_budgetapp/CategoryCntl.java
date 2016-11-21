@@ -50,6 +50,27 @@ public class CategoryCntl {
         username = u;
     }
     
+    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl, String noShow) { //NavigationCntl p,
+        System.out.println("CategoryCntl.constructor1");
+        parent = p;
+        username = u;
+        currentBudgetList = bl;
+        
+        if(theCategoryList == null)
+        {
+            // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
+            categoryListAL = new ArrayList<Category>();
+            ArrayList<Transaction> t = new ArrayList<Transaction>();
+            Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
+            categoryListAL.add(theCategory);
+            theCategoryList = new CategoryList(categoryListAL);
+        }
+    }
+    
     public void showCategoryNavigationUI()
     {
         System.out.println("CategoryCntl.showCatNavUI");

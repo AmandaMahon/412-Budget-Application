@@ -40,6 +40,24 @@ public class BudgetCntl {
         }     
     }
     
+    public BudgetCntl(String u, NavigationCntl p, String noShow)
+    {
+        System.out.println("BudgetCntl.constructor1");
+        parent = p;
+        username = u;
+        
+        if(theBudgetList == null)
+        {
+            ArrayList<Budget> tempBL = new ArrayList<Budget>();
+            ArrayList<Category> tempCat = new ArrayList<Category>();
+            theBudget = new Budget("Test Budget 1", 1000, 7, tempCat);
+            tempBL.add(theBudget);
+            theBudget = new Budget("Test Budget 2", 500, 30, tempCat);
+            tempBL.add(theBudget);
+            theBudgetList = new BudgetList(tempBL);
+        }     
+    }
+    
     public BudgetCntl(String u, int i)
     {
         System.out.println("BudgetCntl.constructor2");

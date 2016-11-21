@@ -19,6 +19,8 @@ public class NavigationCntl {
     public ArrayList<Budget> currentBudgetList;
     public ArrayList<Category> currentCategoryList;
     public TransactionCntl theTransactionCntl;
+    public ArrayList<Transaction> currentTransactionList;
+    public AnalyticsCntl theAnalyticsCntl;
     
     public NavigationCntl(String u){
         System.out.println("NavigationCntl.constructor1");
@@ -106,6 +108,45 @@ public class NavigationCntl {
         theTransactionCntl = transCntl;
         currentCategoryList = cAL;
         theCategoryCntl.setCurrentCategoryList(cAL);
+        showNavigationUI();
+    }
+    
+    public void showAnalytics()
+    {
+        System.out.println("NavigationCntl.showAnalytics");
+        if(currentBudgetList == null)
+        {
+            if(theBudgetCntl == null)
+            {
+                theBudgetCntl = new BudgetCntl(username, this, "NoShow");
+            }
+            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+        }
+        if(currentCategoryList == null)
+        {
+            if(theCategoryCntl == null)
+            {
+                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, "NoShow");
+            }
+            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+        }
+        
+        if(currentTransactionList == null)
+        {
+            if(theTransactionCntl == null)
+            {
+                theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, "noShow");
+            }
+            currentTransactionList = theTransactionCntl.getCurrentTransactionList();
+        }
+        theAnalyticsCntl = new AnalyticsCntl(this, username, currentBudgetList, currentCategoryList, currentTransactionList);
+    }
+    
+    public void analyticsToNav(AnalyticsCntl ac, String u)
+    {
+        System.out.println("NavigationCntl.budgetToNav");
+        theAnalyticsCntl = ac;
+        username = u;
         showNavigationUI();
     }
 }
