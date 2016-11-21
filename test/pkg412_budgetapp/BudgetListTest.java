@@ -13,6 +13,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  *
  * @author aim5627, lvw5264
@@ -54,6 +57,10 @@ public class BudgetListTest {
         ArrayList<Budget> bl = new ArrayList<Budget>();
         bl.add(i);
         BudgetList instance = new BudgetList(bl);
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        System.out.println(gson.toJson(bl));
         
         instance.setBudgetList(bl);
         // TODO review the generated test code and remove the default call to fail.

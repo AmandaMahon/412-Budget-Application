@@ -6,6 +6,8 @@
 package pkg412_budgetapp;
 
 import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  *
@@ -38,5 +40,14 @@ public class TransactionList {
     public void removeTransaction(int position)
     {
         transactionList.remove(position);
+    }
+    
+    // public void importTransactionList() { } // get a transaction list unless the file doesn't exist
+    
+    public void dumpTransactionList() // save whole transaction list
+    {
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        System.out.println(gson.toJson(transactionList));
     }
 }
