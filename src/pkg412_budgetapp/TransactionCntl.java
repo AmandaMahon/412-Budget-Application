@@ -21,6 +21,27 @@ public class TransactionCntl {
     TransactionUI theTransactionUI;
     ArrayList<Category> categoryList;
     
+    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, String noShow)
+    {
+        System.out.println("TransactionCntl.constructor1");
+        parent = p;
+        username = u;
+        categoryList = cAL;
+        
+        if(theTransactionList == null)
+        {
+            ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
+            //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
+            theTransaction = new Transaction("Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
+            tempTL.add(theTransaction);
+            theTransaction = new Transaction("Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
+            tempTL.add(theTransaction);
+            theTransaction = new Transaction("Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
+            tempTL.add(theTransaction);
+            theTransactionList = new TransactionList(tempTL);
+        }
+    }
+    
     public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL)
     {
         System.out.println("TransactionCntl.constructor1");
@@ -48,6 +69,11 @@ public class TransactionCntl {
     {
         System.out.println("TransactionCntl.showTransaction");
         theTransactionUI = new TransactionUI(this, username, categoryList);
+        theTransactionUI.setVisible(true);
+    }
+    
+    public void hideTransactionUI()
+    {
         theTransactionUI.setVisible(true);
     }
     
@@ -79,5 +105,10 @@ public class TransactionCntl {
         }
         JOptionPane.showMessageDialog(null, "New Transaction Created", "Transaction Created", JOptionPane.INFORMATION_MESSAGE);
         parent.TransactionToNavigation(this, categoryList);
+    }
+    
+    public ArrayList<Transaction> getCurrentTransactionList()
+    {
+        return theTransactionList.getTransactionList();
     }
 }
