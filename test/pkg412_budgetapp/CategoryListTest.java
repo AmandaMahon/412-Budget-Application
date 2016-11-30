@@ -5,12 +5,16 @@
  */
 package pkg412_budgetapp;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
 import static org.junit.Assert.*;
 
 /**
@@ -131,6 +135,32 @@ public class CategoryListTest {
         instance.removeCategory(position);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of saveCategory and loadCategory method, of class CategoryList.
+     */
+    @Test
+    public void testSaveCategory() {
+        System.out.println("saveCategory");
+        
+        Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
+        ArrayList<Transaction> tAL = new ArrayList<Transaction>();
+        Category cOb = new Category("Food", 1000, "Home", tAL);
+        ArrayList<Category> c = new ArrayList<Category>();
+        c.add(cOb);
+        //Budget instance = new Budget("Amanda", 1000.0, 14, c);
+        
+        //ArrayList<Category> c = null;
+        CategoryList instance = new CategoryList(c);
+        
+        int position = 0;
+        //CategoryList instance = null;
+        
+        // returns false if there are failures serializing
+        assertTrue(instance.saveCategories());
+        System.out.println("loadCategory");
+        assertTrue(instance.loadCategories());
     }
     
 }

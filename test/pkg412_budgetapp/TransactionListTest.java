@@ -109,4 +109,24 @@ public class TransactionListTest {
         //fail("The test case is a prototype.");
     }
     
+    /**
+     * Test of saveTransactions and loadTransactions method, of class TransactionList.
+     */
+    @Test
+    public void testSaveTransactions() {
+        System.out.println("saveTransactions");
+        int position = 0;
+        
+        ArrayList<Transaction> tl = new ArrayList<Transaction>();
+        //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
+        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        tl.add(t);
+        TransactionList instance = new TransactionList(tl);
+        
+        // returns false if there are failures serializing
+        assertTrue(instance.saveTransactions());
+        System.out.println("loadCategory");
+        assertTrue(instance.loadTransactions());
+    }
+    
 }
