@@ -108,11 +108,12 @@ public class NavigationCntl {
         theTransactionCntl = new TransactionCntl(this, username, currentCategoryList);
     }
     
-    public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL)
+    public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL, ArrayList<Transaction> tAL)
     {
         theTransactionCntl = transCntl;
         currentCategoryList = cAL;
         theCategoryCntl.setCurrentCategoryList(cAL);
+        currentTransactionList = tAL;
         showNavigationUI();
     }
     

@@ -104,11 +104,16 @@ public class TransactionCntl {
             }
         }
         JOptionPane.showMessageDialog(null, "New Transaction Created", "Transaction Created", JOptionPane.INFORMATION_MESSAGE);
-        parent.TransactionToNavigation(this, categoryList);
+        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
     }
     
     public ArrayList<Transaction> getCurrentTransactionList()
     {
         return theTransactionList.getTransactionList();
+    }
+    
+    public void backToMain()
+    {
+        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
     }
 }
