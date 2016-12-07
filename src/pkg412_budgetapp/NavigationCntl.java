@@ -21,22 +21,27 @@ public class NavigationCntl {
     public TransactionCntl theTransactionCntl;
     public ArrayList<Transaction> currentTransactionList;
     public AnalyticsCntl theAnalyticsCntl;
+    public int notificationSize;
+    public NotificationCntl notificationCntl;
     
     public NavigationCntl(String u){
         System.out.println("NavigationCntl.constructor1");
         username = u;
+        getNewNotificationsNum();
         showNavigationUI();
     }
     
     public NavigationCntl(String u, int i){
         System.out.println("NavigationCntl.constructor2");
         username = u;
+        getNewNotificationsNum();
     }
     
     public void showNavigationUI()
     {
         System.out.println("CategoryList.showNavigationUI");
-        theNavigationUI = new NavigationUI(this, username); // 
+        //getNewNotificationsNum();
+        theNavigationUI = new NavigationUI(this, username, notificationSize); // 
         theNavigationUI.setVisible(true);
     }
     
@@ -147,6 +152,27 @@ public class NavigationCntl {
         System.out.println("NavigationCntl.budgetToNav");
         theAnalyticsCntl = ac;
         username = u;
+        showNavigationUI();
+    }
+    
+    
+    //notifications
+    public void getNewNotificationsNum()
+    {
+        notificationCntl = new NotificationCntl(this, false);
+        notificationSize = notificationCntl.numNew();
+
+    }
+    
+    public void showNotifications()
+    {
+        notificationCntl.showNotificationNavUI(this);
+    }
+    
+    public void notificationToNav(NotificationCntl nc, int ns)
+    {
+        notificationCntl = nc;
+        notificationSize = ns;
         showNavigationUI();
     }
 }

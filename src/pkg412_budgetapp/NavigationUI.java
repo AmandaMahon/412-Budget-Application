@@ -16,19 +16,23 @@ public class NavigationUI extends javax.swing.JFrame {
      */
     private String username;
     private NavigationCntl parent;
+    private int notificationSize;
     
     public NavigationUI() {
         System.out.println("NavigationUI.constructor1");
         initComponents();
     }
     
-    public NavigationUI(NavigationCntl p, String u) // 
+    public NavigationUI(NavigationCntl p, String u, int ns) // 
     {
         System.out.println("NavigationUI.constructor2");
-        //parent = p;
+        parent = p;
         username = u;
+        notificationSize = ns;
         //usernameLbl.setText(u);
-        initComponents(); 
+        initComponents();
+        notificationsBtn.setText("Notifications (" + notificationSize + ")");
+        
     }
 
     /**
@@ -75,6 +79,11 @@ public class NavigationUI extends javax.swing.JFrame {
         profileBtn.setText("Personal Profile");
 
         notificationsBtn.setText("Notifications");
+        notificationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notificationsBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setText("Welcome, ");
@@ -133,30 +142,42 @@ public class NavigationUI extends javax.swing.JFrame {
     private void budgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetBtnActionPerformed
         System.out.println("NavigationUI.budgetBtnActionPerformed");
         NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
-        theNavigationCntl.showBudgetNavigationUI();
+        //theNavigationCntl.showBudgetNavigationUI();
+        parent.showBudgetNavigationUI();
         this.setVisible(false);
     }//GEN-LAST:event_budgetBtnActionPerformed
 
     private void categoriesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriesBtnActionPerformed
         System.out.println("NavigationUI.categoriesBtnActionPerformed");
         NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
-        theNavigationCntl.showCategoryNavigationUI();
+        //theNavigationCntl.showCategoryNavigationUI();
+        parent.showCategoryNavigationUI();
         this.setVisible(false);
     }//GEN-LAST:event_categoriesBtnActionPerformed
 
     private void expensesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensesBtnActionPerformed
         System.out.println("NavigationUI.expensesBtnActionPerformed");
         NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
-        theNavigationCntl.showTransactionUI();
+        //theNavigationCntl.showTransactionUI();
+        parent.showTransactionUI();
         this.setVisible(false);
     }//GEN-LAST:event_expensesBtnActionPerformed
 
     private void spendingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spendingBtnActionPerformed
         System.out.println("NavigationUI.spendingBtnActionPerformed");
         NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
-        theNavigationCntl.showAnalytics();
+        //theNavigationCntl.showAnalytics();
+        parent.showAnalytics();
         this.setVisible(false);
     }//GEN-LAST:event_spendingBtnActionPerformed
+
+    private void notificationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsBtnActionPerformed
+        System.out.println("NavigationUI.notificationsBtnActionPerformed");
+        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //theNavigationCntl.showNotifications();
+        parent.showNotifications();
+        this.setVisible(false);
+    }//GEN-LAST:event_notificationsBtnActionPerformed
 
     /**
      * @param args the command line arguments
