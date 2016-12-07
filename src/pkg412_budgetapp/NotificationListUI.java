@@ -132,7 +132,7 @@ public class NotificationListUI extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         parent.toNavigationUI();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
@@ -151,7 +151,7 @@ public class NotificationListUI extends javax.swing.JFrame {
         idNum = Integer.parseInt(tempNum);
         
         parent.showSelectedNotification(this, idNum);
-        this.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_openBtnActionPerformed
 

@@ -214,7 +214,8 @@ public class TransactionUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        parent.backToMain();
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
@@ -234,7 +235,7 @@ public class TransactionUI extends javax.swing.JFrame {
             {
                  parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "withdraw", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
             }
-            this.setVisible(false);
+            this.dispose();
         }
     }//GEN-LAST:event_SaveBtnActionPerformed
 

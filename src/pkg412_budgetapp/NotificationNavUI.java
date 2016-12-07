@@ -98,17 +98,17 @@ public class NotificationNavUI extends javax.swing.JFrame {
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         parent.showNotificationListUI("new");
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_newBtnActionPerformed
 
     private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
         parent.showNotificationListUI("read");
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_readBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         parent.toNavigationUI();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**

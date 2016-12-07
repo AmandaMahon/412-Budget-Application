@@ -78,14 +78,14 @@ public class CategoryNavigationUI extends javax.swing.JFrame {
         System.out.println("CategoryNavigationUI.createCategorytBtnActionPerformed");
         //CategoryCntl theCategoryCntl = new CategoryCntl(username, 1);
         parent.showNewCategory();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_createCategorytBtnActionPerformed
 
     private void editCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCategoryBtnActionPerformed
         System.out.println("CategoryNavigationUI.editCategoryBtnActionPerformed");
         //CategoryCntl theCategoryCntl = new CategoryCntl(username, 1);
         parent.showEditCategory();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_editCategoryBtnActionPerformed
 
     /**
