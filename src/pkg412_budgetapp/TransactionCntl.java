@@ -20,13 +20,20 @@ public class TransactionCntl {
     TransactionList theTransactionList;
     TransactionUI theTransactionUI;
     ArrayList<Category> categoryList;
+    ArrayList<Budget> budgetList;
+    int currentPosition;
+    Category currentCategory;
+    Budget currentBudget;
     
-    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, String noShow)
+    
+    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL, String noShow)
     {
         System.out.println("TransactionCntl.constructor1");
         parent = p;
         username = u;
         categoryList = cAL;
+        budgetList = bAL;
+        
         
         if(theTransactionList == null)
         {
@@ -42,12 +49,13 @@ public class TransactionCntl {
         }
     }
     
-    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL)
+    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL)
     {
         System.out.println("TransactionCntl.constructor1");
         parent = p;
         username = u;
         categoryList = cAL;
+        budgetList = bAL;
         
         if(theTransactionList == null)
         {
@@ -81,11 +89,13 @@ public class TransactionCntl {
     {
         theTransaction = new Transaction(n, a, tt, cn, m, d, y, pl, descr);
         theTransactionList.addTransaction(theTransaction);
+        currentPosition = 0;
         
         for(int i = 0; i<categoryList.size(); i++)
         {
             if(cn.equals(categoryList.get(i).getName()))
             {
+                currentPosition = i;
                 double catAmount = categoryList.get(i).getCurrentAmount();
                 if(tt.equals("return"))
                 {
@@ -103,8 +113,52 @@ public class TransactionCntl {
                 }
             }
         }
+        
         JOptionPane.showMessageDialog(null, "New Transaction Created", "Transaction Created", JOptionPane.INFORMATION_MESSAGE);
-        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
+        checkForNotifications();
+        //parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
+    }
+    
+    public void checkForNotifications()
+    {
+        //get category percent
+        currentCategory = categoryList.get(currentPosition);
+        double categoryPercentage = (currentCategory.getCurrentAmount() / currentCategory.getAmount()) * 100;
+        if(categoryPercentage < 50)
+        {
+            parent.createNotifications(this, currentCategory.getBudgetName(), currentCategory.getName(),
+                    currentCategory.getCurrentAmount(), categoryPercentage, currentCategory.getAmount(),
+                    "cat", budgetList, categoryList, theTransactionList.getTransactionList());
+        }
+        
+        //get budget percent
+        double budgetAmountSaved = 0;
+        for(int i = 0; i<budgetList.size(); i++)
+        {
+            String budgetName = budgetList.get(i).getName();
+            String categoryBudget = currentCategory.getBudgetName();
+            if(budgetName.equals(categoryBudget))
+            {
+                currentBudget = budgetList.get(i);
+            }
+        }
+        for(int i = 0; i<categoryList.size(); i++)
+        {
+           if(categoryList.get(i).getBudgetName().equals(currentBudget.getName()))
+           {
+               budgetAmountSaved += categoryList.get(i).getCurrentAmount();
+           }
+        }
+        currentBudget.setCurrentAmount(budgetAmountSaved);
+        double budgetSpent = currentBudget.getAmount() - budgetAmountSaved;
+        double budgetPercentage = (budgetSpent / currentBudget.getAmount())*100;
+        if(budgetPercentage < 50)
+        {
+            parent.createNotifications(this, currentBudget.getName(), currentCategory.getName(),
+                    currentBudget.getCurrentAmount(), budgetPercentage, currentBudget.getAmount(),
+                    "bud", budgetList, categoryList, theTransactionList.getTransactionList());
+        }
+        
     }
     
     public ArrayList<Transaction> getCurrentTransactionList()

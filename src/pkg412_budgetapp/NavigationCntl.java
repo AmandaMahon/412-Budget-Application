@@ -105,7 +105,7 @@ public class NavigationCntl {
             currentCategoryList = theCategoryCntl.getCurrentCategoryList();
         }
         
-        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList);
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList);
     }
     
     public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL, ArrayList<Transaction> tAL)
@@ -114,7 +114,18 @@ public class NavigationCntl {
         currentCategoryList = cAL;
         theCategoryCntl.setCurrentCategoryList(cAL);
         currentTransactionList = tAL;
+        //getNewNotificationsNum();
         showNavigationUI();
+    }
+    
+    public void createNotifications(TransactionCntl tc, String b, String c, double currentA, 
+            double p, double a, String type, ArrayList<Budget> bAL, ArrayList<Category> cAL, 
+            ArrayList<Transaction> tAL)
+    {
+        currentBudgetList = bAL;
+        theBudgetCntl = theBudgetCntl.setCurrentBudgetList(bAL);
+        notificationCntl.createNotification(this, b, c, currentA, p, a, type);
+        TransactionToNavigation(tc, cAL, tAL);
     }
     
     public void showAnalytics()
@@ -141,7 +152,7 @@ public class NavigationCntl {
         {
             if(theTransactionCntl == null)
             {
-                theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, "noShow");
+                theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, "noShow");
             }
             currentTransactionList = theTransactionCntl.getCurrentTransactionList();
         }

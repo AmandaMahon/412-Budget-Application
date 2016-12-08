@@ -113,4 +113,10 @@ public class BudgetCntl {
         System.out.println("BudgetCntl.getCurrentBudgetList");
         return theBudgetList.getBudgetList();
     }
+    
+    public BudgetCntl setCurrentBudgetList(ArrayList<Budget> bAL)
+    {
+        theBudgetList.setBudgetList(bAL);
+        return this;
+    }
 }
