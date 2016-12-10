@@ -36,7 +36,7 @@ public class AnalyticsCntlTest {
         System.out.println("showAnalytics_NavigationUI");
         Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
-        Category c = new Category("Food", 1000, "Home", tAL);
+        Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
         cAL.add(c);
         CategoryList cL = new CategoryList(cAL);
@@ -63,7 +63,7 @@ public class AnalyticsCntlTest {
         System.out.println("showAnalytics_BudgetUI");
         Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
-        Category c = new Category("Food", 1000, "Home", tAL);
+        Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
         cAL.add(c);
         CategoryList cL = new CategoryList(cAL);
@@ -90,7 +90,7 @@ public class AnalyticsCntlTest {
         System.out.println("showAnalytics_CategoryPurchasesUI");
         Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
-        Category c = new Category("Food", 1000, "Home", tAL);
+        Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
         cAL.add(c);
         CategoryList cL = new CategoryList(cAL);
@@ -117,7 +117,7 @@ public class AnalyticsCntlTest {
         System.out.println("showAnalytics_ChartsUI");
         Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
-        Category c = new Category("Food", 1000, "Home", tAL);
+        Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
         cAL.add(c);
         CategoryList cL = new CategoryList(cAL);
@@ -144,7 +144,7 @@ public class AnalyticsCntlTest {
         System.out.println("backBtnPressed");
         Transaction t = new Transaction("Burger", 5, "Credit", "Food", 3, 4, 2015, "The Mix", "A burger with no tomato.");
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
-        Category c = new Category("Food", 1000, "Home", tAL);
+        Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
         cAL.add(c);
         CategoryList cL = new CategoryList(cAL);
