@@ -23,7 +23,7 @@ public class TransactionCntl {
     ArrayList<Budget> budgetList;
     int currentPosition;
     Category currentCategory;
-    Budget currentBudget;
+    //Budget currentBudget;
     
     
     public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL, String noShow)
@@ -132,6 +132,7 @@ public class TransactionCntl {
         }
         
         //get budget percent
+        Budget currentBudget = budgetList.get(0);
         double budgetAmountSaved = 0;
         for(int i = 0; i<budgetList.size(); i++)
         {
