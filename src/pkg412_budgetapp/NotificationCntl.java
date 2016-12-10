@@ -44,6 +44,14 @@ public class NotificationCntl {
         if(showUI == false) { numNew(); }
     }
     
+    public void createNotification(NavigationCntl p, String b, String c, double currentA, 
+            double percent, double a, String type)
+    {
+        int size = theNotificationList.getNotificationList().size() + 1;
+        theNotification = new Notification(b, c, size, currentA, percent, a, false, type);
+        theNotificationList.addNotification(theNotification);
+    }
+    
     public int numNew()
     {
         return theNotificationList.getNewSize();
