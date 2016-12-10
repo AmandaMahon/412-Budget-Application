@@ -125,6 +125,16 @@ public class CategoryCntl {
         System.out.println("CategoryCntl.setCurrentCategoryList");
         theCategoryList.setCategories(cAL);
     }
+    
+    public boolean saveCategories()
+    {
+        return theCategoryList.saveCategories();
+    }
+    
+    public boolean loadCategories()
+    {
+        return theCategoryList.loadCategories();
+    }
         
     
 }

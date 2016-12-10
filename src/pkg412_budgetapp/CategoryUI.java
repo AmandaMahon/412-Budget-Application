@@ -7,6 +7,7 @@ package pkg412_budgetapp;
 
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,7 +81,7 @@ public class CategoryUI extends javax.swing.JFrame {
         categoryDropdown = new javax.swing.JComboBox<>();
         amountTb = new javax.swing.JTextField();
         amountLbl = new javax.swing.JLabel();
-        nameTb1 = new javax.swing.JTextField();
+        nameTb = new javax.swing.JTextField();
         budgetNameLbl = new javax.swing.JLabel();
         budgetDropdown = new javax.swing.JComboBox<>();
         selectCategoryLbl = new javax.swing.JLabel();
@@ -152,7 +153,7 @@ public class CategoryUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(categoryDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -175,7 +176,7 @@ public class CategoryUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl)
-                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amountLbl)
@@ -205,7 +206,7 @@ public class CategoryUI extends javax.swing.JFrame {
             if(selectedCategory.equals(c))
             {
                 position = i;
-                nameTb1.setText(c);
+                nameTb.setText(c);
                 amountTb.setText(String.valueOf(currentCL.get(i).getAmount()));
                 //intervalTb.setText(String.valueOf(currentCL.get(i).getIntervalPeriod()));
                 budgetDropdown.setSelectedItem(currentCL.get(i).getBudgetName());
@@ -215,20 +216,38 @@ public class CategoryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_selectCategoryBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if(viewType.equals("new"))
+        String amount = amountTb.getText();
+        String regex = "[0-9]+"; 
+        boolean isNumber = amount.matches(regex);
+        String name = nameTb.getText();
+        
+        if(name.equals("") || name.equals(null) || amount.equals("") || amount.equals(null))
         {
-            ArrayList<Transaction> t = new ArrayList<Transaction>();
-            //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
-            parent.addNewCategory(new Category(nameTb1.getText(), Double.parseDouble(amountTb.getText()), budgetDropdown.getSelectedItem().toString(), t));
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "Please fill in all text boxes", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
         }
-        else if(viewType.equals("edit"))
+        else if(isNumber == false)
         {
-            currentCL.get(position).setName(username);
-            currentCL.get(position).setAmount(Double.parseDouble(amountTb.getText()));
-            currentCL.get(position).setBudgetName(categoryDropdown.getSelectedItem().toString());
-            parent.editCategory(currentCL);
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "Enter a dollar amount in 'amount' box", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            if(viewType.equals("new"))
+            {
+                ArrayList<Transaction> t = new ArrayList<Transaction>();
+                //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+                parent.addNewCategory(new Category(nameTb.getText(), Double.parseDouble(amountTb.getText()), budgetDropdown.getSelectedItem().toString(), t));
+                this.dispose();
+            }
+            else if(viewType.equals("edit"))
+            {
+                currentCL.get(position).setName(nameTb.getText());
+                currentCL.get(position).setAmount(Double.parseDouble(amountTb.getText()));
+                currentCL.get(position).setBudgetName(categoryDropdown.getSelectedItem().toString());
+                parent.editCategory(currentCL);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -278,7 +297,7 @@ public class CategoryUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> categoryDropdown;
     private javax.swing.JLabel categoryTitleLbl;
     private javax.swing.JLabel nameLbl;
-    private javax.swing.JTextField nameTb1;
+    private javax.swing.JTextField nameTb;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton selectCategoryBtn;
     private javax.swing.JLabel selectCategoryLbl;

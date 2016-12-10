@@ -68,12 +68,4 @@ public class AnalyticsCntl {
         parent.analyticsToNav(this, username);
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

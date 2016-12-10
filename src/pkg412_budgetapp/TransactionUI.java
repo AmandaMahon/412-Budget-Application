@@ -220,23 +220,61 @@ public class TransactionUI extends javax.swing.JFrame {
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        if(returnRB.isSelected() && withdrawRB.isSelected())
+        String month = monthTF.getText();
+        String day = dayTF.getText();
+        String year = yearTF.getText();
+        String amount = amountTF.getText();
+        String regex = "[0-9]+"; 
+        boolean isMonth = month.matches(regex);
+        boolean isDay = day.matches(regex);
+        boolean isYear = year.matches(regex);
+        boolean isAmount = amount.matches(regex);
+        String name = NameTF.getText();
+        String purchaseLocation = purchaseLocationTF.getText();
+        String desc = DescriptionTB.getText();
+        //
+        if(name.equals("") || name.equals(null) || amount.equals("") || amount.equals(null) ||
+                month.equals("") || month.equals(null) || day.equals("") || day.equals(null) ||
+                year.equals("") || year.equals(null) || purchaseLocation.equals("") || 
+                purchaseLocation.equals(null) || desc.equals(null) || desc.equals(""))
         {
-            JOptionPane.showMessageDialog(null, "Return & Withdaw are selected, please disselect 1", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in all text boxes", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(isAmount == false)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a dollar amount in 'amount' box", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(isMonth == false || isDay == false || isYear == false)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a number amount for the date boxes", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(returnRB.isSelected() && withdrawRB.isSelected())
+        {
+            JOptionPane.showMessageDialog(null, "Return & Withdaw are selected, "
+                    + "please disselect 1", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(!returnRB.isSelected() && !withdrawRB.isSelected())
+        {
+            JOptionPane.showMessageDialog(null, "Please select Return or Withdaw ", 
+                    "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
-            if(returnRB.isSelected())
-            {
-                parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "return", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
-
-            }
-            if(withdrawRB.isSelected())
-            {
-                 parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "withdraw", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
-            }
-            this.dispose();
-        }
+                if(returnRB.isSelected())
+                {
+                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "return", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
+                    this.dispose();
+                }
+                else if(withdrawRB.isSelected())
+                {
+                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "withdraw", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
+                    this.dispose();
+                }
+            }    
+        //}
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     /**

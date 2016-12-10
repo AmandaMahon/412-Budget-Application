@@ -119,4 +119,14 @@ public class BudgetCntl {
         theBudgetList.setBudgetList(bAL);
         return this;
     }
+    
+    public boolean saveBudgets()
+    {
+        return theBudgetList.saveBudgets();
+    }
+    
+    public boolean loadBudgets()
+    {
+        return theBudgetList.loadBudgets();
+    }
 }

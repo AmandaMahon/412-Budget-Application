@@ -126,4 +126,14 @@ public class NotificationCntl {
     {
         parent.notificationToNav(this, theNotificationList.getNewSize());
     }
+    
+    public boolean saveNotifications()
+    {
+        return theNotificationList.saveNotifications();
+    }
+    
+    public boolean loadNotifications()
+    {
+        return theNotificationList.loadNotifications();
+    }
 }

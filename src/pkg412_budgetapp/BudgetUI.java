@@ -7,6 +7,7 @@ package pkg412_budgetapp;
 
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +40,8 @@ public class BudgetUI extends javax.swing.JFrame {
         selectBudgetLbl.setVisible(false);
         getBudgetBtn.setVisible(false);
         budgetTitleLbl.setText("New Budget");
+        intervalLbl.setVisible(false);
+        intervalTb.setVisible(false);
     }
     
     //edit budget
@@ -70,6 +73,9 @@ public class BudgetUI extends javax.swing.JFrame {
             //budgetDropdown = new JComboBox<>(bNames);
             budgetDropdown.setModel(new JComboBox<>(bNames).getModel());
         }
+        
+        intervalLbl.setVisible(false);
+        intervalTb.setVisible(false);
        
     }
     
@@ -141,6 +147,8 @@ public class BudgetUI extends javax.swing.JFrame {
 
         intervalLbl.setText("Interval Period (In days)");
 
+        intervalTb.setText("0");
+
         getBudgetBtn.setText("Get Info");
         getBudgetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,24 +171,29 @@ public class BudgetUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nameLbl)
-                    .addComponent(amountLbl)
-                    .addComponent(intervalLbl)
-                    .addComponent(selectBudgetLbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(selectBudgetLbl)
+                        .addGap(18, 18, 18)
                         .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(getBudgetBtn)))
+                        .addComponent(getBudgetBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nameLbl)
+                            .addComponent(amountLbl)
+                            .addComponent(intervalLbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(91, 91, 91))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(saveBtn)))))
                 .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,21 +208,20 @@ public class BudgetUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(budgetDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(selectBudgetLbl)))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLbl))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amountTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(amountLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intervalLbl)
                     .addComponent(intervalTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(intervalLbl))
-                .addGap(14, 14, 14)
-                .addComponent(saveBtn)
-                .addGap(27, 27, 27))
+                    .addComponent(saveBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,20 +244,38 @@ public class BudgetUI extends javax.swing.JFrame {
     }//GEN-LAST:event_getBudgetBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if(viewType.equals("new"))
+        String amount = amountTb.getText();
+        String regex = "[0-9]+"; 
+        boolean isNumber = amount.matches(regex);
+        String name = nameTb1.getText();
+        
+        if(name.equals("") || name.equals(null) || amount.equals("") || amount.equals(null))
         {
-            ArrayList<Category> c = new ArrayList<Category>();
-            //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
-            parent.addNewBudget(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "Please fill in all text boxes", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
         }
-        else if(viewType.equals("edit"))
+        else if(isNumber == false)
         {
-            budgetList.get(position).setName(username);
-            budgetList.get(position).setAmount(Double.parseDouble(amountTb.getText()));
-            budgetList.get(position).setIntervalPeriod(Integer.parseInt(intervalTb.getText()));
-            parent.editBudget(budgetList);
-            this.dispose();
+            JOptionPane.showMessageDialog(null, "Enter a dollar amount in 'amount' box", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            if(viewType.equals("new"))
+            {
+                ArrayList<Category> c = new ArrayList<Category>();
+                //budgetList.add(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+                parent.addNewBudget(new Budget(nameTb1.getText(), Double.parseDouble(amountTb.getText()), Integer.parseInt(intervalTb.getText()), c));
+                this.dispose();
+            }
+            else if(viewType.equals("edit"))
+            {
+                budgetList.get(position).setName(nameTb1.getText());
+                budgetList.get(position).setAmount(Double.parseDouble(amountTb.getText()));
+                budgetList.get(position).setIntervalPeriod(Integer.parseInt(intervalTb.getText()));
+                parent.editBudget(budgetList);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 

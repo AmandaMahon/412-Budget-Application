@@ -5,6 +5,15 @@
  */
 package pkg412_budgetapp;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +22,7 @@ import java.util.ArrayList;
  */
 public class NotificationList {
     
+    private final String JSON_FNAME = "notifications.json";
     ArrayList<Notification> theNotificationList;
     ArrayList<Notification> newNotificationList;
     ArrayList<Notification> readNotificationList;
@@ -77,4 +87,30 @@ public class NotificationList {
     public ArrayList<Notification> getNotificationList_Read(){ return readNotificationList; } 
 //    public void addNotification_Read(Notification n){ readNotificationList.add(n); }    
 //    public void deleteNotification_Read(int position){ readNotificationList.remove(position); }
+    
+    
+     // save list to JSON for later use
+    public Boolean saveNotifications() {
+        try (Writer writer = new FileWriter(JSON_FNAME)) {
+            Gson gson = new GsonBuilder().create();
+            gson.toJson(this.theNotificationList, writer);
+            return true;
+        }
+        catch (IOException io) {
+            return false;
+        }
+    }
+    
+    // load list from JSON, or return false if not found
+    public boolean loadNotifications() {
+        try (BufferedReader br = new BufferedReader(new FileReader(JSON_FNAME))) {
+            Gson gson = new GsonBuilder().create();
+            Type list = new TypeToken<ArrayList<Notification>>(){}.getType();
+            this.theNotificationList = gson.fromJson(br, list);
+            return true;
+        }
+        catch (IOException io) {
+            return false;
+        }
+    }
 }

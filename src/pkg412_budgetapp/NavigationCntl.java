@@ -6,6 +6,7 @@
 package pkg412_budgetapp;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +29,7 @@ public class NavigationCntl {
         System.out.println("NavigationCntl.constructor1");
         username = u;
         getNewNotificationsNum();
+        loadSavedData();
         showNavigationUI();
     }
     
@@ -35,6 +37,7 @@ public class NavigationCntl {
         System.out.println("NavigationCntl.constructor2");
         username = u;
         getNewNotificationsNum();
+        loadSavedData();
     }
     
     public void showNavigationUI()
@@ -49,6 +52,53 @@ public class NavigationCntl {
     {
         System.out.println("NavigationCntl.showBudgetNavigationUI");
         theBudgetCntl = new BudgetCntl(username, this); //this, 
+    }
+    
+    public void loadSavedData()
+    {
+//        theBudgetCntl = new BudgetCntl(username, this);
+//        currentBudgetList = new ArrayList<Budget>();
+//        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList);
+//        currentCategoryList = new ArrayList<Category>();
+//        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList);
+//        notificationCntl = new NotificationCntl(this, false);
+        
+//        boolean isBudget = theBudgetCntl.loadBudgets();
+//        boolean isCategory = theCategoryCntl.loadCategories();
+//        boolean isTransaction = theTransactionCntl.loadTransactions();
+//        boolean isNotification = notificationCntl.loadNotifications();
+//        
+//        if(isBudget && isCategory && isTransaction && isNotification)
+//        {
+//            JOptionPane.showMessageDialog(null, "Your data has been loaded", 
+//                    "Loading", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        else
+//        {
+//            JOptionPane.showMessageDialog(null, "Your data has NOT been loaded", 
+//                    "Loading Error", JOptionPane.INFORMATION_MESSAGE);
+//        }
+    }
+    
+    public void saveUpdates()
+    {
+        boolean isBudget = theBudgetCntl.saveBudgets();
+        boolean isCategory = theCategoryCntl.saveCategories();
+        boolean isTransaction = theTransactionCntl.saveTransactions();
+        boolean isNotification = notificationCntl.saveNotifications();
+        
+        if(isBudget && isCategory && isTransaction && isNotification)
+        {
+            JOptionPane.showMessageDialog(null, "Your data has been saved", 
+                    "Saving", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Your data has NOT been saved", 
+                    "Saving Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+            
+        
     }
     
     public void budgetToNav(BudgetCntl bc, String u, ArrayList<Budget> cbl)

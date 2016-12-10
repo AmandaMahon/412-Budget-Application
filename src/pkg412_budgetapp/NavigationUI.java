@@ -21,6 +21,7 @@ public class NavigationUI extends javax.swing.JFrame {
     public NavigationUI() {
         System.out.println("NavigationUI.constructor1");
         initComponents();
+        profileBtn.setVisible(false);
     }
     
     public NavigationUI(NavigationCntl p, String u, int ns) // 
@@ -32,8 +33,14 @@ public class NavigationUI extends javax.swing.JFrame {
         //usernameLbl.setText(u);
         initComponents();
         notificationsBtn.setText("Notifications (" + notificationSize + ")");
+        profileBtn.setVisible(false);
         
     }
+    
+//    public void saveUpdates()
+//    {
+//        parent.saveUpdates();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,6 +61,11 @@ public class NavigationUI extends javax.swing.JFrame {
         categoriesBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                saveUpdates(evt);
+            }
+        });
 
         budgetBtn.setText("Manage Budgets");
         budgetBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +98,9 @@ public class NavigationUI extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel1.setText("Welcome, ");
+        jLabel1.setText("Welcome! ");
 
         usernameLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        usernameLbl.setText("username");
 
         categoriesBtn.setText("Manage Categories");
         categoriesBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +115,6 @@ public class NavigationUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(expensesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(spendingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-            .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(notificationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(categoriesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
@@ -112,6 +122,8 @@ public class NavigationUI extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameLbl)
+                .addGap(35, 35, 35)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(budgetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -119,9 +131,11 @@ public class NavigationUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(usernameLbl))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(usernameLbl))
+                    .addComponent(profileBtn))
                 .addGap(24, 24, 24)
                 .addComponent(budgetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,9 +145,8 @@ public class NavigationUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spendingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notificationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(notificationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
 
         pack();
@@ -178,6 +191,10 @@ public class NavigationUI extends javax.swing.JFrame {
         parent.showNotifications();
         this.setVisible(false);
     }//GEN-LAST:event_notificationsBtnActionPerformed
+
+    private void saveUpdates(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_saveUpdates
+        parent.saveUpdates();
+    }//GEN-LAST:event_saveUpdates
 
     /**
      * @param args the command line arguments

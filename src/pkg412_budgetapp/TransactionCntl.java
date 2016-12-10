@@ -171,4 +171,14 @@ public class TransactionCntl {
     {
         parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
     }
+    
+    public boolean saveTransactions()
+    {
+        return theTransactionList.saveTransactions();
+    }
+    
+    public boolean loadTransactions()
+    {
+        return theTransactionList.loadTransactions();
+    }
 }
