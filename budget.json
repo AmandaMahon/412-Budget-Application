@@ -1,1 +1,1 @@
-[{"name":"Amanda","amount":1000.0,"intervalPeriod":14,"currentAmount":1000.0,"categories":[{"name":"Food","amount":1000.0,"currentAmount":1000.0,"budgetName":"Home","transactions":[]}]}]
+[{"name":"Test Budget 1","amount":1000.0,"intervalPeriod":7,"currentAmount":1000.0,"categories":[]},{"name":"Test Budget 2","amount":700.0,"intervalPeriod":30,"currentAmount":500.0,"categories":[]}]
