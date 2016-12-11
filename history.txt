@@ -1,0 +1,8 @@
+Test Budget 1:
+	Test Category 1:
+		[WITHDRAW] Date: 10/28/2016, Name: Test Transaction 1, Amount: $51.25, Purchase Location: Target, Description: bought clothing
+	Test Category 2:
+		[WITHDRAW] Date: 10/28/2016, Name: Test Transaction 2, Amount: $25.75, Purchase Location: Walmart, Description: bought food
+		[RETURN] Date: 10/29/2016, Name: Test Transaction 3, Amount: $10.0, Purchase Location: Walmart, Description: returned food
+Test Budget 2:
+	Test Category 3:
