@@ -50,25 +50,28 @@ public class CategoryCntl {
 //        username = u;
 //    }
     
-    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl, boolean showUI) { //NavigationCntl p,
+    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl, boolean showUI, boolean createTests) { //NavigationCntl p,
         System.out.println("CategoryCntl.constructor1");
         parent = p;
         username = u;
         currentBudgetList = bl;
         
-        if(theCategoryList == null)
+        categoryListAL = new ArrayList<Category>();
+        if(createTests)
         {
-            // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
-            categoryListAL = new ArrayList<Category>();
-            ArrayList<Transaction> t = new ArrayList<Transaction>();
-            Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategoryList = new CategoryList(categoryListAL);
+            if(theCategoryList == null || theCategoryList.getCategories().size() == 0)
+            {
+                // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
+                ArrayList<Transaction> t = new ArrayList<Transaction>();
+                Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
+                categoryListAL.add(theCategory);
+                theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
+                categoryListAL.add(theCategory);
+                theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
+                categoryListAL.add(theCategory);
+            }
         }
+        theCategoryList = new CategoryList(categoryListAL);
         
         if(showUI)
         {

@@ -36,11 +36,15 @@ public class NotificationCntl {
 //    }
     
     //constructor show notifcation UI
-    public NotificationCntl(NavigationCntl p, boolean showUI)
+    public NotificationCntl(NavigationCntl p, boolean showUI, boolean createTests)
     {
         System.out.println("NotificationCntl.constructor1");
         parent = p;
-        if(theNotificationList == null) { createTestData(); }
+        
+        if(createTests)
+        {
+            if(theNotificationList == null) { createTestData(); }
+        }
         if(showUI == true) { showNotificationNavUI(parent); }
         if(showUI == false) { numNew(); }
     }

@@ -27,7 +27,7 @@ public class TransactionCntl {
     
     
     public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, 
-            ArrayList<Budget> bAL, boolean showUI)
+            ArrayList<Budget> bAL, boolean showUI, boolean createTests)
     {
         System.out.println("TransactionCntl.constructor1");
         parent = p;
@@ -35,19 +35,21 @@ public class TransactionCntl {
         categoryList = cAL;
         budgetList = bAL;
         
-        
-        if(theTransactionList == null)
+        ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
+        if(createTests)
         {
-            ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
-            //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
-            theTransaction = new Transaction(0, "Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
-            tempTL.add(theTransaction);
-            theTransaction = new Transaction(1, "Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
-            tempTL.add(theTransaction);
-            theTransaction = new Transaction(2, "Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
-            tempTL.add(theTransaction);
-            theTransactionList = new TransactionList(tempTL);
+           if(theTransactionList == null)
+            {
+                //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
+                theTransaction = new Transaction(0, "Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
+                tempTL.add(theTransaction);
+                theTransaction = new Transaction(1, "Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
+                tempTL.add(theTransaction);
+                theTransaction = new Transaction(2, "Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
+                tempTL.add(theTransaction);
+            } 
         }
+        theTransactionList = new TransactionList(tempTL);            
         
         if(showUI)
         {

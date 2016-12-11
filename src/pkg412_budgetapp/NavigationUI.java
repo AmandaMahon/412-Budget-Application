@@ -154,7 +154,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
     private void budgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetBtnActionPerformed
         System.out.println("NavigationUI.budgetBtnActionPerformed");
-        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //NavigationCntl theNavigationCntl = new NavigationCntl(username, false);
         //theNavigationCntl.showBudgetNavigationUI();
         parent.showBudgetNavigationUI();
         this.setVisible(false);
@@ -162,7 +162,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
     private void categoriesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriesBtnActionPerformed
         System.out.println("NavigationUI.categoriesBtnActionPerformed");
-        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //NavigationCntl theNavigationCntl = new NavigationCntl(username, false);
         //theNavigationCntl.showCategoryNavigationUI();
         parent.showCategoryNavigationUI();
         this.setVisible(false);
@@ -170,7 +170,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
     private void expensesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensesBtnActionPerformed
         System.out.println("NavigationUI.expensesBtnActionPerformed");
-        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //NavigationCntl theNavigationCntl = new NavigationCntl(username, false);
         //theNavigationCntl.showTransactionUI();
         parent.showTransactionUI();
         this.setVisible(false);
@@ -178,7 +178,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
     private void spendingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spendingBtnActionPerformed
         System.out.println("NavigationUI.spendingBtnActionPerformed");
-        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //NavigationCntl theNavigationCntl = new NavigationCntl(username, false);
         //theNavigationCntl.showAnalytics();
         parent.showAnalytics();
         this.setVisible(false);
@@ -186,7 +186,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
     private void notificationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsBtnActionPerformed
         System.out.println("NavigationUI.notificationsBtnActionPerformed");
-        NavigationCntl theNavigationCntl = new NavigationCntl(username, 1);
+        //NavigationCntl theNavigationCntl = new NavigationCntl(username, false);
         //theNavigationCntl.showNotifications();
         parent.showNotifications();
         this.setVisible(false);

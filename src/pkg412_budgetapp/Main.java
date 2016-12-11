@@ -16,7 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("Main.main");
-        NavigationCntl theNavigationCntl = new NavigationCntl("aim5627");
+        NavigationCntl theNavigationCntl = new NavigationCntl("aim5627", true);
     }
     
 }

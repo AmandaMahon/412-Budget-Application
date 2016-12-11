@@ -25,29 +25,33 @@ public class NavigationCntl {
     public int notificationSize;
     public NotificationCntl notificationCntl;
     
-    public NavigationCntl(String u){
+    public NavigationCntl(String u, boolean startUp){
         System.out.println("NavigationCntl.constructor1");
         username = u;
         
-        theBudgetCntl = new BudgetCntl(username, this, false);
+        theBudgetCntl = new BudgetCntl(username, this, false, false);
         currentBudgetList = theBudgetCntl.getCurrentBudgetList();
-        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, false); 
+        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, false, false); 
         currentCategoryList = theCategoryCntl.getCurrentCategoryList();
-        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, false);
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, false, false);
         currentTransactionList = theTransactionCntl.getCurrentTransactionList();
         theAnalyticsCntl = new AnalyticsCntl(this, username, currentBudgetList, currentCategoryList, currentTransactionList, false);
         
-        getNewNotificationsNum();        
-        loadSavedData();
-        showNavigationUI();
+        if(startUp)
+        {
+            getNewNotificationsNum();        
+            loadSavedData();
+            showNavigationUI();
+        }
+        
     }
     
-    public NavigationCntl(String u, int i){
-        System.out.println("NavigationCntl.constructor2");
-        username = u;
-        getNewNotificationsNum();
-        loadSavedData();
-    }
+//    public NavigationCntl(String u, int i){
+//        System.out.println("NavigationCntl.constructor2");
+//        username = u;
+//        getNewNotificationsNum();
+//        loadSavedData();
+//    }
     
     public void showNavigationUI()
     {
@@ -60,34 +64,32 @@ public class NavigationCntl {
     public void showBudgetNavigationUI()
     {
         System.out.println("NavigationCntl.showBudgetNavigationUI");
-        theBudgetCntl = new BudgetCntl(username, this, true); //this, 
+        theBudgetCntl = new BudgetCntl(username, this, true, true); //this, 
     }
     
     public void loadSavedData()
     {
         System.out.println("NavigationCntl.loadSavedData");
-//        theBudgetCntl = new BudgetCntl(username, this);
-//        currentBudgetList = new ArrayList<Budget>();
-//        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList);
-//        currentCategoryList = new ArrayList<Category>();
-//        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList);
-//        notificationCntl = new NotificationCntl(this, false);
         
-//        boolean isBudget = theBudgetCntl.loadBudgets();
-//        boolean isCategory = theCategoryCntl.loadCategories();
-//        boolean isTransaction = theTransactionCntl.loadTransactions();
-//        boolean isNotification = notificationCntl.loadNotifications();
-//        
-//        if(isBudget && isCategory && isTransaction && isNotification)
-//        {
-//            JOptionPane.showMessageDialog(null, "Your data has been loaded", 
-//                    "Loading", JOptionPane.INFORMATION_MESSAGE);
-//        }
-//        else
-//        {
-//            JOptionPane.showMessageDialog(null, "Your data has NOT been loaded", 
-//                    "Loading Error", JOptionPane.INFORMATION_MESSAGE);
-//        }
+        boolean isBudget = theBudgetCntl.loadBudgets();
+        currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+        boolean isCategory = theCategoryCntl.loadCategories();
+        currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+        boolean isTransaction = theTransactionCntl.loadTransactions();
+        currentTransactionList = theTransactionCntl.getCurrentTransactionList();
+        boolean isNotification = notificationCntl.loadNotifications();
+        
+        
+        if(isBudget && isCategory && isTransaction && isNotification)
+        {
+            JOptionPane.showMessageDialog(null, "Your data has been loaded", 
+                    "Loading", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Your data has NOT been loaded", 
+                    "Loading Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
     public void saveUpdates()
@@ -137,7 +139,7 @@ public class NavigationCntl {
 //            }
 //            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
 //        }
-        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, true); //this, 
+        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, true, true); //this, 
     }
     
     public void categoryToNav(CategoryCntl cc, String u, ArrayList<Category> ccl, boolean save)
@@ -178,7 +180,7 @@ public class NavigationCntl {
 //            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
 //        }
         
-        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, true);
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, true, true);
     }
     
     public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL, 
@@ -262,7 +264,7 @@ public class NavigationCntl {
     public void getNewNotificationsNum()
     {
         System.out.println("NavigationCntl.getNewNotificationsNum");
-        notificationCntl = new NotificationCntl(this, false);
+        notificationCntl = new NotificationCntl(this, false, true);
         notificationSize = notificationCntl.numNew();
     }
     
