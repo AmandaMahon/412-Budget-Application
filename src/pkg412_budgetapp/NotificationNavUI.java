@@ -16,10 +16,12 @@ public class NotificationNavUI extends javax.swing.JFrame {
      * Creates new form NotificationNavUI
      */
     public NotificationNavUI() {
+        System.out.println("NotificationNavUI.constructor1");
         initComponents();
     }
     
     public NotificationNavUI(NotificationCntl p, int nn) {
+        System.out.println("NotificationNavUI.constructor2");
         parent = p;
         newNotifications = nn;
         initComponents();
@@ -41,6 +43,11 @@ public class NotificationNavUI extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         newBtn.setText("New Notifications");
         newBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,29 +94,37 @@ public class NotificationNavUI extends javax.swing.JFrame {
                     .addComponent(backBtn)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(newBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(readBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2))
+                .addComponent(readBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
+        System.out.println("NotificationNavUI.newBtnActionPerformed");
         parent.showNotificationListUI("new");
         this.dispose();
     }//GEN-LAST:event_newBtnActionPerformed
 
     private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
+        System.out.println("NotificationNavUI.readBtnActionPerformed");
         parent.showNotificationListUI("read");
         this.dispose();
     }//GEN-LAST:event_readBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("NotificationNavUI.backBtnActionPerformed");
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("NotificationNavUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

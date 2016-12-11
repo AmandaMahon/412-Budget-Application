@@ -23,12 +23,38 @@ public class CategoryCntl {
     CategoryList theCategoryList;
     Category theCategory;
     
-    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl) { //NavigationCntl p,
+//    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl) { //NavigationCntl p,
+//        System.out.println("CategoryCntl.constructor1");
+//        parent = p;
+//        username = u;
+//        currentBudgetList = bl;
+//        showCategoryNavigationUI();
+//        
+//        if(theCategoryList == null)
+//        {
+//            // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
+//            categoryListAL = new ArrayList<Category>();
+//            ArrayList<Transaction> t = new ArrayList<Transaction>();
+//            Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
+//            categoryListAL.add(theCategory);
+//            theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
+//            categoryListAL.add(theCategory);
+//            theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
+//            categoryListAL.add(theCategory);
+//            theCategoryList = new CategoryList(categoryListAL);
+//        }
+//    }
+//    
+//    public CategoryCntl(String u, int i) {
+//        System.out.println("CategoryCntl.constructor2");
+//        username = u;
+//    }
+    
+    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl, boolean showUI) { //NavigationCntl p,
         System.out.println("CategoryCntl.constructor1");
         parent = p;
         username = u;
         currentBudgetList = bl;
-        showCategoryNavigationUI();
         
         if(theCategoryList == null)
         {
@@ -43,31 +69,10 @@ public class CategoryCntl {
             categoryListAL.add(theCategory);
             theCategoryList = new CategoryList(categoryListAL);
         }
-    }
-    
-    public CategoryCntl(String u, int i) {
-        System.out.println("CategoryCntl.constructor2");
-        username = u;
-    }
-    
-    public CategoryCntl(NavigationCntl p, String u, ArrayList<Budget> bl, String noShow) { //NavigationCntl p,
-        System.out.println("CategoryCntl.constructor1");
-        parent = p;
-        username = u;
-        currentBudgetList = bl;
         
-        if(theCategoryList == null)
+        if(showUI)
         {
-            // FIXME: These require two budgets to exist in the budget list! Which breaks if there is no budget list.
-            categoryListAL = new ArrayList<Category>();
-            ArrayList<Transaction> t = new ArrayList<Transaction>();
-            Category theCategory = new Category("Test Category 1", 500, currentBudgetList.get(0).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategory = new Category("Test Category 2", 250, currentBudgetList.get(0).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategory = new Category("Test Category 3", 300, currentBudgetList.get(1).getName(), t);
-            categoryListAL.add(theCategory);
-            theCategoryList = new CategoryList(categoryListAL);
+            showCategoryNavigationUI();            
         }
     }
     
@@ -95,7 +100,7 @@ public class CategoryCntl {
     public void toNavigationUI()
     {
         System.out.println("CategoryCntl.toNavigationUI");
-        parent.categoryToNav(this, username, theCategoryList.getCategories());
+        parent.categoryToNav(this, username, theCategoryList.getCategories(), false);
     }
     
     public void addNewCategory(Category c)
@@ -128,12 +133,20 @@ public class CategoryCntl {
     
     public boolean saveCategories()
     {
+        System.out.println("CategoryCntl.saveCategories");
         return theCategoryList.saveCategories();
     }
     
     public boolean loadCategories()
     {
+        System.out.println("CategoryCntl.loadCategories");
         return theCategoryList.loadCategories();
+    }
+    
+    public void closeWindow()
+    {
+        System.out.println("CategoryCntl.closeWindow");
+        parent.categoryToNav(this, username, theCategoryList.getCategories(), true);
     }
         
     

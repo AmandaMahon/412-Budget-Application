@@ -24,20 +24,21 @@ public class NotificationCntl {
     Category category;
     
     //constructor new notifcation
-    public NotificationCntl(NavigationCntl p, String nt, double pt, Budget b, Category c)
-    {
-        parent = p;
-        notificationType = nt;
-        percent = pt;
-        budget = b;
-        category = c;
-        
-        if(theNotificationList == null) { createTestData(); }
-    }
+//    public NotificationCntl(NavigationCntl p, String nt, double pt, Budget b, Category c)
+//    {
+//        parent = p;
+//        notificationType = nt;
+//        percent = pt;
+//        budget = b;
+//        category = c;
+//        
+//        if(theNotificationList == null) { createTestData(); }
+//    }
     
     //constructor show notifcation UI
     public NotificationCntl(NavigationCntl p, boolean showUI)
     {
+        System.out.println("NotificationCntl.constructor1");
         parent = p;
         if(theNotificationList == null) { createTestData(); }
         if(showUI == true) { showNotificationNavUI(parent); }
@@ -47,6 +48,7 @@ public class NotificationCntl {
     public void createNotification(NavigationCntl p, String b, String c, double currentA, 
             double percent, double a, String type)
     {
+        System.out.println("NotificationCntl.createNotification");
         int size = theNotificationList.getNotificationList().size() + 1;
         theNotification = new Notification(b, c, size, currentA, percent, a, false, type);
         theNotificationList.addNotification(theNotification);
@@ -54,12 +56,15 @@ public class NotificationCntl {
     
     public int numNew()
     {
+        System.out.println("NotificationCntl.numNew");
         return theNotificationList.getNewSize();
     }
     
     //test data
     public void createTestData()
     {
+        System.out.println("NotificationCntl.createTestData");
+        
         ArrayList<Notification> tempAL = new ArrayList<Notification>();
         int tempSize = tempAL.size()+1;
         theNotification = new Notification("Test Budget 1", "Test Category 1", tempSize, 0.00, 0, 1000.00, false, "bud");
@@ -86,6 +91,7 @@ public class NotificationCntl {
     
     public void showNotificationNavUI(NavigationCntl p)
     {
+        System.out.println("NotificationCntl.showNotificationNavUI");
         parent = p;
         notificationNavUI = new NotificationNavUI(this, theNotificationList.getNewSize());
         notificationNavUI.setVisible(true);
@@ -93,6 +99,7 @@ public class NotificationCntl {
     
     public void showNotificationListUI(String type)
     {
+        System.out.println("NotificationCntl.showNotificationListUI");
         if(type.equals("new"))
         {
             notificationListUI = new NotificationListUI(this, "new", theNotificationList.getNotificationList_New());
@@ -108,6 +115,7 @@ public class NotificationCntl {
     
     public void showSelectedNotification(NotificationListUI nl, int idNumber)
     {
+        System.out.println("NotificationCntl.showSelectedNotification");
         notificationListUI = nl;
         ArrayList<Notification> tempAL = theNotificationList.getNotificationList();
         for(int i = 0; i<tempAL.size(); i++)
@@ -124,16 +132,25 @@ public class NotificationCntl {
     
     public void toNavigationUI()
     {
-        parent.notificationToNav(this, theNotificationList.getNewSize());
+        System.out.println("NotificationCntl.toNavigationUI");
+        parent.notificationToNav(this, theNotificationList.getNewSize(), false);
     }
     
     public boolean saveNotifications()
     {
+        System.out.println("NotificationCntl.saveNotifications");
         return theNotificationList.saveNotifications();
     }
     
     public boolean loadNotifications()
     {
+        System.out.println("NotificationCntl.loadNotifications");
         return theNotificationList.loadNotifications();
+    }
+    
+    public void closeWindow()
+    {
+        System.out.println("NotificationCntl.closeWindow");
+        parent.notificationToNav(this, theNotificationList.getNewSize(), true);
     }
 }

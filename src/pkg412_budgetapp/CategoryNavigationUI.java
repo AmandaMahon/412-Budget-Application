@@ -43,6 +43,11 @@ public class CategoryNavigationUI extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         createCategorytBtn.setText("Create Category");
         createCategorytBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,9 +118,15 @@ public class CategoryNavigationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editCategoryBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("CategoryNavigationUI.backBtnActionPerformed");
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("CategoryNavigationUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

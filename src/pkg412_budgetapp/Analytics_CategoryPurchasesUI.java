@@ -26,10 +26,12 @@ public class Analytics_CategoryPurchasesUI extends javax.swing.JFrame {
      * Creates new form Analytics_CategoryPurchasesUI
      */
     public Analytics_CategoryPurchasesUI() {
+        System.out.println("Analytics_CategoryPurchasesUI.constructor1");
         initComponents();
     }
     
     public Analytics_CategoryPurchasesUI(AnalyticsCntl p, String u, ArrayList<Budget> bl, ArrayList<Category> cl, ArrayList<Transaction> tl) {
+        System.out.println("Analytics_CategoryPurchasesUI.constructor2");
         parent = p;
         username = u;
         budgetList = bl;
@@ -103,6 +105,11 @@ public class Analytics_CategoryPurchasesUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         jLabel1.setText("Budgets / Categories");
@@ -220,6 +227,7 @@ public class Analytics_CategoryPurchasesUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void categoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBtnActionPerformed
+        System.out.println("Analytics_CategoryPurchasesUI.categoryBtnActionPerformed");
         currentSelectedCategory = categoryCB.getSelectedItem().toString();
         transactionTable.setText("");
         
@@ -241,11 +249,13 @@ public class Analytics_CategoryPurchasesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("Analytics_CategoryPurchasesUI.backBtnActionPerformed");
         parent.backBtnPressed();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void budgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetBtnActionPerformed
+        System.out.println("Analytics_CategoryPurchasesUI.budgetBtnActionPerformed");
         currentSelectedBudget = budgetCB.getSelectedItem().toString();
         ArrayList<String> tempCatAL = new ArrayList<String>();
         for(int i = 0; i<categoryList.size(); i++)
@@ -262,6 +272,11 @@ public class Analytics_CategoryPurchasesUI extends javax.swing.JFrame {
         }            
         categoryCB.setModel(new JComboBox<>(categoryNamesList).getModel());
     }//GEN-LAST:event_budgetBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("Analytics_CategoryPurchasesUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

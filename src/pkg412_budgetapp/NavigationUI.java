@@ -67,21 +67,21 @@ public class NavigationUI extends javax.swing.JFrame {
             }
         });
 
-        budgetBtn.setText("Manage Budgets");
+        budgetBtn.setText("Create/Edit Budgets");
         budgetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 budgetBtnActionPerformed(evt);
             }
         });
 
-        expensesBtn.setText("Manage Expenses");
+        expensesBtn.setText("Enter a New Transaction");
         expensesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expensesBtnActionPerformed(evt);
             }
         });
 
-        spendingBtn.setText("View Spending Data");
+        spendingBtn.setText("View Spending History");
         spendingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spendingBtnActionPerformed(evt);
@@ -102,7 +102,7 @@ public class NavigationUI extends javax.swing.JFrame {
 
         usernameLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
-        categoriesBtn.setText("Manage Categories");
+        categoriesBtn.setText("Create/Edit Categories");
         categoriesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoriesBtnActionPerformed(evt);
@@ -193,6 +193,7 @@ public class NavigationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_notificationsBtnActionPerformed
 
     private void saveUpdates(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_saveUpdates
+        System.out.println("NavigationUI.saveUpdates");
         parent.saveUpdates();
     }//GEN-LAST:event_saveUpdates
 

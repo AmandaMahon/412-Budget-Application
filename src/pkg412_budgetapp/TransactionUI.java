@@ -75,6 +75,11 @@ public class TransactionUI extends javax.swing.JFrame {
         SaveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +97,12 @@ public class TransactionUI extends javax.swing.JFrame {
 
         returnRB.setText("Return");
 
-        withdrawRB.setText("Withdraw");
+        withdrawRB.setText("Purchase");
+        withdrawRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withdrawRBActionPerformed(evt);
+            }
+        });
 
         TransactionTypeLbl.setText("Transaction Type:");
 
@@ -214,12 +224,14 @@ public class TransactionUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("TransactionUI.backBtnActionPerformed");
         parent.backToMain();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
+        System.out.println("TransactionUI.SaveBtnActionPerformed");
         String month = monthTF.getText();
         String day = dayTF.getText();
         String year = yearTF.getText();
@@ -232,7 +244,17 @@ public class TransactionUI extends javax.swing.JFrame {
         String name = NameTF.getText();
         String purchaseLocation = purchaseLocationTF.getText();
         String desc = DescriptionTB.getText();
-        //
+        
+        double catCurrentAmount = 0;
+        for(int i = 0; i<categoryList.size(); i++)
+        {
+            if(categoryList.get(i).getName().equals(CategoryComboBox.getSelectedItem().toString()))
+            {
+                catCurrentAmount = categoryList.get(i).getCurrentAmount();
+            }
+        }
+        catCurrentAmount -= Integer.parseInt(amount);
+        
         if(name.equals("") || name.equals(null) || amount.equals("") || amount.equals(null) ||
                 month.equals("") || month.equals(null) || day.equals("") || day.equals(null) ||
                 year.equals("") || year.equals(null) || purchaseLocation.equals("") || 
@@ -251,6 +273,21 @@ public class TransactionUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter a number amount for the date boxes", 
                     "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
         }
+        else if(Integer.parseInt(month) < 0 || Integer.parseInt(month) > 12)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid month", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(Integer.parseInt(day) < 0 || Integer.parseInt(day) > 31)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid day", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2016)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid year", 
+                    "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
         else if(returnRB.isSelected() && withdrawRB.isSelected())
         {
             JOptionPane.showMessageDialog(null, "Return & Withdaw are selected, "
@@ -261,21 +298,43 @@ public class TransactionUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select Return or Withdaw ", 
                     "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
+        else if(catCurrentAmount < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Category is overdrawn", 
+                    "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
         else
         {
                 if(returnRB.isSelected())
                 {
-                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "return", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
+                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), 
+                            "return", CategoryComboBox.getSelectedItem().toString(), 
+                            Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), 
+                            Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), 
+                            DescriptionTB.getText());
                     this.dispose();
                 }
                 else if(withdrawRB.isSelected())
                 {
-                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), "withdraw", CategoryComboBox.getSelectedItem().toString(), Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), DescriptionTB.getText());
+                    parent.newTransaction(NameTF.getText(), Double.parseDouble(amountTF.getText()), 
+                            "withdraw", CategoryComboBox.getSelectedItem().toString(), 
+                            Integer.parseInt(monthTF.getText()), Integer.parseInt(dayTF.getText()), 
+                            Integer.parseInt(yearTF.getText()), purchaseLocationTF.getText(), 
+                            DescriptionTB.getText());
                     this.dispose();
                 }
             }    
         //}
     }//GEN-LAST:event_SaveBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("TransactionUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
+
+    private void withdrawRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawRBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_withdrawRBActionPerformed
 
     /**
      * @param args the command line arguments

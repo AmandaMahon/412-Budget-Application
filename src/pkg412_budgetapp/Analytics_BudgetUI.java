@@ -25,10 +25,12 @@ public class Analytics_BudgetUI extends javax.swing.JFrame {
      * Creates new form Analytics_BudgetUI
      */
     public Analytics_BudgetUI() {
+        System.out.println("Analytics_BudgetUI.constructor1");
         initComponents();
     }
     
     public Analytics_BudgetUI(AnalyticsCntl p, String u, ArrayList<Budget> bl, ArrayList<Category> cl) {
+        System.out.println("Analytics_BudgetUI.constructor2");
         parent = p;
         username = u;
         budgetList = bl;
@@ -82,6 +84,11 @@ public class Analytics_BudgetUI extends javax.swing.JFrame {
         amountLeftLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         jLabel1.setText("Budgets");
@@ -173,11 +180,13 @@ public class Analytics_BudgetUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("Analytics_BudgetUI.backBtnActionPerformed");
         parent.backBtnPressed();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void budgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budgetBtnActionPerformed
+        System.out.println("Analytics_BudgetUI.budgetBtnActionPerformed");
         currentSelectedBudget = budgetCB.getSelectedItem().toString();
         categoryTable.setText("");
         for(int i = 0; i<categoryList.size(); i++)
@@ -195,6 +204,11 @@ public class Analytics_BudgetUI extends javax.swing.JFrame {
             categoryTable.setText("No category information available");
         }
     }//GEN-LAST:event_budgetBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("Analytics_BudgetUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

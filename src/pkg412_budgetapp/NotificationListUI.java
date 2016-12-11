@@ -22,10 +22,12 @@ public class NotificationListUI extends javax.swing.JFrame {
      * Creates new form NotificationListUI
      */
     public NotificationListUI() {
+        System.out.println("NotificationListUI.constructor1");
         initComponents();
     }
     
     public NotificationListUI(NotificationCntl p, String t, ArrayList<Notification> nl) {
+        System.out.println("NotificationListUI.constructor2");
         parent = p;
         type = t;
         notificationList = nl;
@@ -66,6 +68,11 @@ public class NotificationListUI extends javax.swing.JFrame {
         openBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         titleLbl.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         titleLbl.setText("_ Notifications");
@@ -131,11 +138,13 @@ public class NotificationListUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("NotificationListUI.backBtnActionPerformed");
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
+        System.out.println("NotificationListUI.openBtnActionPerformed");
         String selected = list.getSelectedValue().toString();
         int position = 0;
         int idNum = 0;
@@ -154,6 +163,11 @@ public class NotificationListUI extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_openBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("NotificationListUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

@@ -91,6 +91,11 @@ public class CategoryUI extends javax.swing.JFrame {
         budgetTitleLbl.setText("___ Budget");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         categoryTitleLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         categoryTitleLbl.setText("___ Category");
@@ -194,11 +199,13 @@ public class CategoryUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("CategoryUI.backBtnActionPerformed");               
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void selectCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCategoryBtnActionPerformed
+        System.out.println("CategoryUI.selectCategoryBtnActionPerformed"); 
         String selectedCategory = categoryDropdown.getSelectedItem().toString();
         for(int i = 0; i<currentCL.size(); i++)
         {
@@ -216,10 +223,30 @@ public class CategoryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_selectCategoryBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        System.out.println("CategoryUI.saveBtnActionPerformed"); 
         String amount = amountTb.getText();
         String regex = "[0-9]+"; 
         boolean isNumber = amount.matches(regex);
         String name = nameTb.getText();
+        
+        double total = 0;
+        String budget = budgetDropdown.getSelectedItem().toString();
+        double budgetTotal = 0;
+        for(int i = 0; i<currentCL.size(); i++)
+        {
+            if(budget.equals(currentCL.get(i).getBudgetName()))
+            {
+                total += currentCL.get(i).getAmount();
+            }
+        }
+        for(int i = 0; i<currentBL.size(); i++)
+        {
+            if(budget.equals(currentBL.get(i).getName()))
+            {
+                budgetTotal = currentBL.get(i).getAmount();
+            }
+        }
+        total += Integer.parseInt(amount);
         
         if(name.equals("") || name.equals(null) || amount.equals("") || amount.equals(null))
         {
@@ -230,6 +257,11 @@ public class CategoryUI extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Enter a dollar amount in 'amount' box", 
                     "Incorrect value type", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(total > budgetTotal)
+        {
+            JOptionPane.showMessageDialog(null, "Category total is too large for budget", 
+                    "Incorrect value", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
@@ -250,6 +282,11 @@ public class CategoryUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("CategoryUI.closeWindow"); 
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

@@ -16,10 +16,12 @@ public class Analytics_ChartsUI extends javax.swing.JFrame {
      * Creates new form Analytics_ChartsUI
      */
     public Analytics_ChartsUI() {
+        System.out.println("Analytics_ChartsUI.constructor1");
         initComponents();
     }
     
     public Analytics_ChartsUI(AnalyticsCntl p, String u) {
+        System.out.println("Analytics_ChartsUI.constructor2");
         parent = p;
         username = u;
         initComponents();
@@ -38,6 +40,11 @@ public class Analytics_ChartsUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         jLabel1.setText("Charts");
@@ -74,9 +81,15 @@ public class Analytics_ChartsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println("Analytics_ChartsUI.jButton1ActionPerformed");
         parent.backBtnPressed();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("Analytics_ChartsUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

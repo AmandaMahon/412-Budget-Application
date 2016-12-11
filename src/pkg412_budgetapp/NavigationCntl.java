@@ -28,7 +28,16 @@ public class NavigationCntl {
     public NavigationCntl(String u){
         System.out.println("NavigationCntl.constructor1");
         username = u;
-        getNewNotificationsNum();
+        
+        theBudgetCntl = new BudgetCntl(username, this, false);
+        currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, false); 
+        currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, false);
+        currentTransactionList = theTransactionCntl.getCurrentTransactionList();
+        theAnalyticsCntl = new AnalyticsCntl(this, username, currentBudgetList, currentCategoryList, currentTransactionList, false);
+        
+        getNewNotificationsNum();        
         loadSavedData();
         showNavigationUI();
     }
@@ -51,11 +60,12 @@ public class NavigationCntl {
     public void showBudgetNavigationUI()
     {
         System.out.println("NavigationCntl.showBudgetNavigationUI");
-        theBudgetCntl = new BudgetCntl(username, this); //this, 
+        theBudgetCntl = new BudgetCntl(username, this, true); //this, 
     }
     
     public void loadSavedData()
     {
+        System.out.println("NavigationCntl.loadSavedData");
 //        theBudgetCntl = new BudgetCntl(username, this);
 //        currentBudgetList = new ArrayList<Budget>();
 //        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList);
@@ -82,6 +92,7 @@ public class NavigationCntl {
     
     public void saveUpdates()
     {
+        System.out.println("NavigationCntl.saveUpdates");
         boolean isBudget = theBudgetCntl.saveBudgets();
         boolean isCategory = theCategoryCntl.saveCategories();
         boolean isTransaction = theTransactionCntl.saveTransactions();
@@ -96,145 +107,183 @@ public class NavigationCntl {
         {
             JOptionPane.showMessageDialog(null, "Your data has NOT been saved", 
                     "Saving Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-            
-        
+        } 
     }
     
-    public void budgetToNav(BudgetCntl bc, String u, ArrayList<Budget> cbl)
+    public void budgetToNav(BudgetCntl bc, String u, ArrayList<Budget> cbl, boolean save)
     {
         System.out.println("NavigationCntl.budgetToNav");
         theBudgetCntl = bc;
         username = u;
         currentBudgetList = cbl;
-        showNavigationUI();
+        if(save)
+        {
+            saveUpdates();
+        }
+        else
+        {
+            showNavigationUI();
+        }
     }
     
     public void showCategoryNavigationUI()
     {
         System.out.println("NavigationCntl.showCategoryNavigationUI");
-        if(currentBudgetList == null)
-        {
-            if(theBudgetCntl == null)
-            {
-                theBudgetCntl = new BudgetCntl(username, this);
-            }
-            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
-        }
-        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList); //this, 
+//        if(currentBudgetList == null)
+//        {
+//            if(theBudgetCntl == null)
+//            {
+//                theBudgetCntl = new BudgetCntl(username, this, false);
+//            }
+//            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+//        }
+        theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, true); //this, 
     }
     
-    public void categoryToNav(CategoryCntl cc, String u, ArrayList<Category> ccl)
+    public void categoryToNav(CategoryCntl cc, String u, ArrayList<Category> ccl, boolean save)
     {
         System.out.println("NavigationCntl.categoryToNav");
         theCategoryCntl = cc;
         username = u;
         currentCategoryList = ccl;
-        showNavigationUI();
+        if(save)
+        {
+            saveUpdates();
+        }
+        else
+        {
+            showNavigationUI();
+        }
     }
     
     public void showTransactionUI()
     {
         System.out.println("NavigationCntl.showTransactionUI");
         
-        if(currentBudgetList == null)
-        {
-            if(theBudgetCntl == null)
-            {
-                theBudgetCntl = new BudgetCntl(username, this);
-            }
-            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
-        }
-
-        if(currentCategoryList == null)
-        {
-            if(theCategoryCntl == null)
-            {
-                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList);
-            }
-            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
-        }
+//        if(currentBudgetList == null)
+//        {
+//            if(theBudgetCntl == null)
+//            {
+//                theBudgetCntl = new BudgetCntl(username, this, false);
+//            }
+//            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+//        }
+//
+//        if(currentCategoryList == null)
+//        {
+//            if(theCategoryCntl == null)
+//            {
+//                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, false);
+//            }
+//            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+//        }
         
-        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList);
+        theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, true);
     }
     
-    public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL, ArrayList<Transaction> tAL)
+    public void TransactionToNavigation(TransactionCntl transCntl, ArrayList<Category> cAL, 
+            ArrayList<Transaction> tAL, boolean save)
     {
+        System.out.println("NavigationCntl.TransactionToNavigation");
         theTransactionCntl = transCntl;
         currentCategoryList = cAL;
         theCategoryCntl.setCurrentCategoryList(cAL);
         currentTransactionList = tAL;
         //getNewNotificationsNum();
-        showNavigationUI();
+        if(save)
+        {
+            saveUpdates();
+        }
+        else
+        {
+            showNavigationUI();
+        }
     }
     
     public void createNotifications(TransactionCntl tc, String b, String c, double currentA, 
             double p, double a, String type, ArrayList<Budget> bAL, ArrayList<Category> cAL, 
             ArrayList<Transaction> tAL)
     {
+        System.out.println("NavigationCntl.createNotifications");
         currentBudgetList = bAL;
         theBudgetCntl = theBudgetCntl.setCurrentBudgetList(bAL);
         notificationCntl.createNotification(this, b, c, currentA, p, a, type);
-        TransactionToNavigation(tc, cAL, tAL);
+        TransactionToNavigation(tc, cAL, tAL, false);
     }
     
     public void showAnalytics()
     {
         System.out.println("NavigationCntl.showAnalytics");
-        if(currentBudgetList == null)
-        {
-            if(theBudgetCntl == null)
-            {
-                theBudgetCntl = new BudgetCntl(username, this, "NoShow");
-            }
-            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
-        }
-        if(currentCategoryList == null)
-        {
-            if(theCategoryCntl == null)
-            {
-                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, "NoShow");
-            }
-            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
-        }
-        
-        if(currentTransactionList == null)
-        {
-            if(theTransactionCntl == null)
-            {
-                theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, "noShow");
-            }
-            currentTransactionList = theTransactionCntl.getCurrentTransactionList();
-        }
-        theAnalyticsCntl = new AnalyticsCntl(this, username, currentBudgetList, currentCategoryList, currentTransactionList);
+//        if(currentBudgetList == null)
+//        {
+//            if(theBudgetCntl == null)
+//            {
+//                theBudgetCntl = new BudgetCntl(username, this, false);
+//            }
+//            currentBudgetList = theBudgetCntl.getCurrentBudgetList();
+//        }
+//        if(currentCategoryList == null)
+//        {
+//            if(theCategoryCntl == null)
+//            {
+//                theCategoryCntl = new CategoryCntl(this, username, currentBudgetList, false);
+//            }
+//            currentCategoryList = theCategoryCntl.getCurrentCategoryList();
+//        }
+//        
+//        if(currentTransactionList == null)
+//        {
+//            if(theTransactionCntl == null)
+//            {
+//                theTransactionCntl = new TransactionCntl(this, username, currentCategoryList, currentBudgetList, false);
+//            }
+//            currentTransactionList = theTransactionCntl.getCurrentTransactionList();
+//        }
+        theAnalyticsCntl = new AnalyticsCntl(this, username, currentBudgetList, currentCategoryList, currentTransactionList, true);
     }
     
-    public void analyticsToNav(AnalyticsCntl ac, String u)
+    public void analyticsToNav(AnalyticsCntl ac, String u, boolean save)
     {
         System.out.println("NavigationCntl.budgetToNav");
         theAnalyticsCntl = ac;
         username = u;
-        showNavigationUI();
+        if(save)
+        {
+            saveUpdates();
+        }
+        else
+        {
+            showNavigationUI();
+        }
     }
     
     
     //notifications
     public void getNewNotificationsNum()
     {
+        System.out.println("NavigationCntl.getNewNotificationsNum");
         notificationCntl = new NotificationCntl(this, false);
         notificationSize = notificationCntl.numNew();
-
     }
     
     public void showNotifications()
     {
+        System.out.println("NavigationCntl.showNotifications");
         notificationCntl.showNotificationNavUI(this);
     }
     
-    public void notificationToNav(NotificationCntl nc, int ns)
+    public void notificationToNav(NotificationCntl nc, int ns, boolean save)
     {
+        System.out.println("NavigationCntl.notificationToNav");
         notificationCntl = nc;
         notificationSize = ns;
-        showNavigationUI();
+        if(save)
+        {
+            saveUpdates();
+        }
+        else
+        {
+            showNavigationUI();
+        }
     }
 }

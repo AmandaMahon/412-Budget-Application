@@ -53,6 +53,7 @@ public class CategoryList {
     
     // save category list to JSON for later use
     public Boolean saveCategories() {
+        System.out.println("CategoryList.saveCategories");
         try (Writer writer = new FileWriter(JSON_FNAME)) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(this.categories, writer);
@@ -65,6 +66,7 @@ public class CategoryList {
     
     // load category list from JSON, or return false if not found
     public boolean loadCategories() {
+        System.out.println("CategoryList.loadCategories");
         try (BufferedReader br = new BufferedReader(new FileReader(JSON_FNAME))) {
             Gson gson = new GsonBuilder().create();
             Type listOfCategories = new TypeToken<ArrayList<Category>>(){}.getType();

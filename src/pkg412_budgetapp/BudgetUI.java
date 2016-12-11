@@ -25,6 +25,7 @@ public class BudgetUI extends javax.swing.JFrame {
      * Creates new form BudgetUI
      */
     public BudgetUI() {
+        System.out.println("BudgetUI.constructor3");
         initComponents();
     }
    
@@ -121,6 +122,11 @@ public class BudgetUI extends javax.swing.JFrame {
         selectBudgetLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         budgetTitleLbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         budgetTitleLbl.setText("___ Budget");
@@ -228,6 +234,7 @@ public class BudgetUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void getBudgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBudgetBtnActionPerformed
+        System.out.println("BudgetUI.getBudgetBtnActionPerformed");
         String selectedBudget = budgetDropdown.getSelectedItem().toString();
         for(int i = 0; i<budgetList.size(); i++)
         {
@@ -244,6 +251,7 @@ public class BudgetUI extends javax.swing.JFrame {
     }//GEN-LAST:event_getBudgetBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        System.out.println("BudgetUI.saveBtnActionPerformed");
         String amount = amountTb.getText();
         String regex = "[0-9]+"; 
         boolean isNumber = amount.matches(regex);
@@ -280,9 +288,15 @@ public class BudgetUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("BudgetUI.backBtnActionPerformed");
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("BudgetUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

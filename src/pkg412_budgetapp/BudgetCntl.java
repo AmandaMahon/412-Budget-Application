@@ -21,26 +21,26 @@ public class BudgetCntl {
     BudgetList theBudgetList;
     Budget theBudget;
     
-    public BudgetCntl(String u, NavigationCntl p)
-    {
-        System.out.println("BudgetCntl.constructor1");
-        parent = p;
-        username = u;
-        showBudgetNavigationUI();
-        
-        if(theBudgetList == null)
-        {
-            ArrayList<Budget> tempBL = new ArrayList<Budget>();
-            ArrayList<Category> tempCat = new ArrayList<Category>();
-            theBudget = new Budget("Test Budget 1", 1000, 7, tempCat);
-            tempBL.add(theBudget);
-            theBudget = new Budget("Test Budget 2", 500, 30, tempCat);
-            tempBL.add(theBudget);
-            theBudgetList = new BudgetList(tempBL);
-        }     
-    }
+//    public BudgetCntl(String u, NavigationCntl p)
+//    {
+//        System.out.println("BudgetCntl.constructor1");
+//        parent = p;
+//        username = u;
+//        showBudgetNavigationUI();
+//        
+//        if(theBudgetList == null)
+//        {
+//            ArrayList<Budget> tempBL = new ArrayList<Budget>();
+//            ArrayList<Category> tempCat = new ArrayList<Category>();
+//            theBudget = new Budget("Test Budget 1", 1000, 7, tempCat);
+//            tempBL.add(theBudget);
+//            theBudget = new Budget("Test Budget 2", 500, 30, tempCat);
+//            tempBL.add(theBudget);
+//            theBudgetList = new BudgetList(tempBL);
+//        }     
+//    }
     
-    public BudgetCntl(String u, NavigationCntl p, String noShow)
+    public BudgetCntl(String u, NavigationCntl p, boolean showUI)
     {
         System.out.println("BudgetCntl.constructor1");
         parent = p;
@@ -55,7 +55,12 @@ public class BudgetCntl {
             theBudget = new Budget("Test Budget 2", 500, 30, tempCat);
             tempBL.add(theBudget);
             theBudgetList = new BudgetList(tempBL);
-        }     
+        } 
+        
+        if(showUI)
+        {
+            showBudgetNavigationUI();
+        }
     }
     
     public BudgetCntl(String u, int i)
@@ -105,7 +110,7 @@ public class BudgetCntl {
     public void toNavigationUI()
     {
         System.out.println("BudgetCntl.toNavigationUI");
-        parent.budgetToNav(this, username, theBudgetList.getBudgetList());
+        parent.budgetToNav(this, username, theBudgetList.getBudgetList(), false);
     }
     
     public ArrayList<Budget> getCurrentBudgetList()
@@ -116,17 +121,26 @@ public class BudgetCntl {
     
     public BudgetCntl setCurrentBudgetList(ArrayList<Budget> bAL)
     {
+        System.out.println("BudgetCntl.setCurrentBudgetList");
         theBudgetList.setBudgetList(bAL);
         return this;
     }
     
     public boolean saveBudgets()
     {
+        System.out.println("BudgetCntl.saveBudgets");
         return theBudgetList.saveBudgets();
     }
     
     public boolean loadBudgets()
     {
+        System.out.println("BudgetCntl.loadBudgets");
         return theBudgetList.loadBudgets();
+    }
+    
+    public void closeWindow()
+    {
+        System.out.println("BudgetCntl.closeWindow");
+        parent.budgetToNav(this, username, theBudgetList.getBudgetList(), true);
     }
 }

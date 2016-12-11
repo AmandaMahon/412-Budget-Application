@@ -71,7 +71,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="budgetBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Budgets"/>
+        <Property name="text" type="java.lang.String" value="Create/Edit Budgets"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="budgetBtnActionPerformed"/>
@@ -79,7 +79,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="expensesBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Expenses"/>
+        <Property name="text" type="java.lang.String" value="Enter a New Transaction"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="expensesBtnActionPerformed"/>
@@ -87,7 +87,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="spendingBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Spending Data"/>
+        <Property name="text" type="java.lang.String" value="View Spending History"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spendingBtnActionPerformed"/>
@@ -123,7 +123,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="categoriesBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Categories"/>
+        <Property name="text" type="java.lang.String" value="Create/Edit Categories"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoriesBtnActionPerformed"/>

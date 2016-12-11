@@ -20,6 +20,7 @@ public class NotificationUI extends javax.swing.JFrame {
      * Creates new form NotificationUI
      */
     public NotificationUI(NotificationCntl p, Notification n) {
+        System.out.println("NotificationUI.constructor1");
         initComponents();
         parent = p;
         notification = n;
@@ -28,6 +29,7 @@ public class NotificationUI extends javax.swing.JFrame {
     }
     
     public NotificationUI() {
+        System.out.println("NotificationUI.constructor2");
         initComponents();
     }
 
@@ -45,6 +47,11 @@ public class NotificationUI extends javax.swing.JFrame {
         messageLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -92,9 +99,15 @@ public class NotificationUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("NotificationUI.backBtnActionPerformed");
         parent.toNavigationUI();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("NotificationUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments

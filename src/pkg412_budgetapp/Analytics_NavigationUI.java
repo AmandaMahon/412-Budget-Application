@@ -5,6 +5,8 @@
  */
 package pkg412_budgetapp;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aim5627
@@ -18,10 +20,12 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
      * Creates new form Analytics_NavigationUI
      */
     public Analytics_NavigationUI() {
+        System.out.println("Analytics_NavigationUI.constructor1");
         initComponents();
     }
     
     public Analytics_NavigationUI(AnalyticsCntl p, String u) {
+        System.out.println("Analytics_NavigationUI.constructor2");
         parent = p;
         username = u;
         initComponents();
@@ -42,17 +46,23 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
         ChartBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        printBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeWindow(evt);
+            }
+        });
 
-        CategoryBtn.setText("Category Purchases");
+        CategoryBtn.setText("View Purchases by Category");
         CategoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoryBtnActionPerformed(evt);
             }
         });
 
-        BudgetBtn.setText("Budget Information");
+        BudgetBtn.setText("View Budget History");
         BudgetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BudgetBtnActionPerformed(evt);
@@ -76,6 +86,13 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
             }
         });
 
+        printBtn.setText("Print Transaction History To a Text File");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,6 +107,7 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addContainerGap())
+            .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +118,9 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(ChartBtn)
                         .addComponent(backBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BudgetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CategoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,24 +131,50 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBtnActionPerformed
+        System.out.println("Analytics_NavigationUI.CategoryBtnActionPerformed");
         parent.showAnalytics_CategoryPurchasesUI();
         this.dispose();
     }//GEN-LAST:event_CategoryBtnActionPerformed
 
     private void BudgetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BudgetBtnActionPerformed
+        System.out.println("Analytics_NavigationUI.BudgetBtnActionPerformed");
         parent.showAnalytics_BudgetUI();
         this.dispose();
     }//GEN-LAST:event_BudgetBtnActionPerformed
 
     private void ChartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChartBtnActionPerformed
+        System.out.println("Analytics_NavigationUI.ChartBtnActionPerformed");
         parent.showAnalytics_ChartsUI();
         this.dispose();
     }//GEN-LAST:event_ChartBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        System.out.println("Analytics_NavigationUI.backBtnActionPerformed");
         parent.backBtnPressed();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        System.out.println("Analytics_NavigationUI.printBtnActionPerformed");
+        parent.writeHistory();
+        
+//        if(isSaved)
+//        {
+//            JOptionPane.showMessageDialog(null, "Histroy saved to 'history.txt'", 
+//                    "Saving", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        
+//        else
+//        {
+//            JOptionPane.showMessageDialog(null, "Histroy not saved", 
+//                    "Saving Error", JOptionPane.INFORMATION_MESSAGE);
+//        }
+    }//GEN-LAST:event_printBtnActionPerformed
+
+    private void closeWindow(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindow
+        System.out.println("Analytics_NavigationUI.closeWindow");
+        parent.closeWindow();
+    }//GEN-LAST:event_closeWindow
 
     /**
      * @param args the command line arguments
@@ -171,5 +217,6 @@ public class Analytics_NavigationUI extends javax.swing.JFrame {
     private javax.swing.JButton ChartBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }

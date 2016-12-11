@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="closeWindow"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -34,6 +37,7 @@
               <Component id="backBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="printBtn" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -47,7 +51,9 @@
                       <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="printBtn" pref="74" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="BudgetBtn" min="-2" pref="79" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="CategoryBtn" min="-2" pref="78" max="-2" attributes="0"/>
@@ -59,7 +65,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="CategoryBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Category Purchases"/>
+        <Property name="text" type="java.lang.String" value="View Purchases by Category"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CategoryBtnActionPerformed"/>
@@ -67,7 +73,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BudgetBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Budget Information"/>
+        <Property name="text" type="java.lang.String" value="View Budget History"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BudgetBtnActionPerformed"/>
@@ -95,6 +101,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="printBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Print Transaction History To a Text File"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

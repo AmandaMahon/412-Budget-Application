@@ -46,6 +46,7 @@ public class BudgetList {
 
     // save list to JSON for later use
     public Boolean saveBudgets() {
+       System.out.println("BudgetList.saveBudgets");
         try (Writer writer = new FileWriter(JSON_FNAME)) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(this.budgetList, writer);
@@ -58,6 +59,7 @@ public class BudgetList {
     
     // load list from JSON, or return false if not found
     public boolean loadBudgets() {
+        System.out.println("BudgetList.loadBudgets");
         try (BufferedReader br = new BufferedReader(new FileReader(JSON_FNAME))) {
             Gson gson = new GsonBuilder().create();
             Type list = new TypeToken<ArrayList<Budget>>(){}.getType();

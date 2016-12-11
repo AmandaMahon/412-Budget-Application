@@ -26,7 +26,8 @@ public class TransactionCntl {
     //Budget currentBudget;
     
     
-    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL, String noShow)
+    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, 
+            ArrayList<Budget> bAL, boolean showUI)
     {
         System.out.println("TransactionCntl.constructor1");
         parent = p;
@@ -39,55 +40,63 @@ public class TransactionCntl {
         {
             ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
             //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
-            theTransaction = new Transaction("Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
+            theTransaction = new Transaction(0, "Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
             tempTL.add(theTransaction);
-            theTransaction = new Transaction("Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
+            theTransaction = new Transaction(1, "Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
             tempTL.add(theTransaction);
-            theTransaction = new Transaction("Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
+            theTransaction = new Transaction(2, "Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
             tempTL.add(theTransaction);
             theTransactionList = new TransactionList(tempTL);
+        }
+        
+        if(showUI)
+        {
+            showTransactionUI();
         }
     }
     
-    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL)
-    {
-        System.out.println("TransactionCntl.constructor1");
-        parent = p;
-        username = u;
-        categoryList = cAL;
-        budgetList = bAL;
-        
-        if(theTransactionList == null)
-        {
-            ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
-            //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
-            theTransaction = new Transaction("Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
-            tempTL.add(theTransaction);
-            theTransaction = new Transaction("Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
-            tempTL.add(theTransaction);
-            theTransaction = new Transaction("Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
-            tempTL.add(theTransaction);
-            theTransactionList = new TransactionList(tempTL);
-        }
-        
-        showTransactionUI();
-    }
+//    public TransactionCntl(NavigationCntl p, String u, ArrayList<Category> cAL, ArrayList<Budget> bAL)
+//    {
+//        System.out.println("TransactionCntl.constructor1");
+//        parent = p;
+//        username = u;
+//        categoryList = cAL;
+//        budgetList = bAL;
+//        
+//        if(theTransactionList == null)
+//        {
+//            ArrayList<Transaction> tempTL = new ArrayList<Transaction>();
+//            //(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
+//            theTransaction = new Transaction(0, "Test Transaction 1", 51.25, "withdraw", "Test Category 1", 10, 28, 2016, "Target", "bought clothing");
+//            tempTL.add(theTransaction);
+//            theTransaction = new Transaction(1, "Test Transaction 2", 25.75, "withdraw", "Test Category 2", 10, 28, 2016, "Walmart", "bought food");
+//            tempTL.add(theTransaction);
+//            theTransaction = new Transaction(2, "Test Transaction 3", 10.00, "return", "Test Category 2", 10, 29, 2016, "Walmart", "returned food");
+//            tempTL.add(theTransaction);
+//            theTransactionList = new TransactionList(tempTL);
+//        }
+//        
+//        showTransactionUI();
+//    }
     
     public void showTransactionUI()
     {
-        System.out.println("TransactionCntl.showTransaction");
+        System.out.println("TransactionCntl.showTransactionUI");
         theTransactionUI = new TransactionUI(this, username, categoryList);
         theTransactionUI.setVisible(true);
     }
     
     public void hideTransactionUI()
     {
+        System.out.println("TransactionCntl.hideTransactionUI");
         theTransactionUI.setVisible(true);
     }
     
     public void newTransaction(String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr)
     {
-        theTransaction = new Transaction(n, a, tt, cn, m, d, y, pl, descr);
+        System.out.println("TransactionCntl.newTransaction");
+        int id = theTransactionList.getTransactionList().size();
+        theTransaction = new Transaction(id, n, a, tt, cn, m, d, y, pl, descr);
         theTransactionList.addTransaction(theTransaction);
         currentPosition = 0;
         
@@ -121,6 +130,7 @@ public class TransactionCntl {
     
     public void checkForNotifications()
     {
+        System.out.println("TransactionCntl.checkForNotifications");
         //get category percent
         currentCategory = categoryList.get(currentPosition);
         double categoryPercentage = (currentCategory.getCurrentAmount() / currentCategory.getAmount()) * 100;
@@ -164,21 +174,31 @@ public class TransactionCntl {
     
     public ArrayList<Transaction> getCurrentTransactionList()
     {
+        System.out.println("TransactionCntl.getCurrentTransactionList");
         return theTransactionList.getTransactionList();
     }
     
     public void backToMain()
     {
-        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList());
+        System.out.println("TransactionCntl.backToMain");
+        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList(), false);
     }
     
     public boolean saveTransactions()
     {
+        System.out.println("TransactionCntl.saveTransactions");
         return theTransactionList.saveTransactions();
     }
     
     public boolean loadTransactions()
     {
+        System.out.println("TransactionCntl.loadTransactions");
         return theTransactionList.loadTransactions();
+    }
+    
+    public void closeWindow()
+    {
+        System.out.println("TransactionCntl.closeWindow");
+        parent.TransactionToNavigation(this, categoryList, theTransactionList.getTransactionList(), true);
     }
 }
