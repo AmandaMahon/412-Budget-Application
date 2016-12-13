@@ -44,12 +44,12 @@ public class TransactionCntlTest {
     @Test
     public void testShowTransactionUI() {
         System.out.println("showTransactionUI");
-        NavigationCntl p = new NavigationCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627", true);
         ArrayList<Category> cAL = new ArrayList<Category>();
         Budget i = new Budget("Amanda", 1000.0, 14, cAL);
         ArrayList<Budget> bl = new ArrayList<Budget>();
         bl.add(i);
-        TransactionCntl instance = new TransactionCntl(p, "aim5627", cAL, bl, "yes");
+        TransactionCntl instance = new TransactionCntl(p, "aim5627", cAL, bl, true, true);
         instance.showTransactionUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -71,7 +71,7 @@ public class TransactionCntlTest {
         String pl = "";
         String descr = "";
         
-        NavigationCntl p = new NavigationCntl("aim5627");
+        NavigationCntl p = new NavigationCntl("aim5627", true);
         ArrayList<Transaction> tAL = new ArrayList<Transaction>();
         Category c = new Category("Food", 1000, "Amanda", tAL);
         ArrayList<Category> cAL = new ArrayList<Category>();
@@ -79,7 +79,7 @@ public class TransactionCntlTest {
         Budget i = new Budget("Amanda", 1000.0, 14, cAL);
         ArrayList<Budget> bl = new ArrayList<Budget>();
         bl.add(i);
-        TransactionCntl instance = new TransactionCntl(p, "aim5627", cAL, bl);
+        TransactionCntl instance = new TransactionCntl(p, "aim5627", cAL, bl, true, true);
         instance.newTransaction(n, a, tt, cn, m, d, y, pl, descr);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

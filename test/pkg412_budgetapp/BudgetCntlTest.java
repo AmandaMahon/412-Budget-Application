@@ -44,8 +44,8 @@ public class BudgetCntlTest {
     @Test
     public void testShowBudgetNavigationUI() {
         System.out.println("showBudgetNavigationUI");
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.showBudgetNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -57,8 +57,8 @@ public class BudgetCntlTest {
     @Test
     public void testShowNewBudgetUI() {
         System.out.println("showNewBudgetUI");
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.showNewBudgetUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -70,8 +70,8 @@ public class BudgetCntlTest {
     @Test
     public void testShowEditBudgetUI() {
         System.out.println("showEditBudgetUI");
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.showEditBudgetUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -85,8 +85,8 @@ public class BudgetCntlTest {
         System.out.println("addNewBudget");
         ArrayList<Category> c = new ArrayList<Category>();
         Budget b = new Budget("Budget Test 1", 1000.00, 14, c);
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.addNewBudget(b);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -102,8 +102,8 @@ public class BudgetCntlTest {
         ArrayList<Category> c = new ArrayList<Category>();
         Budget b = new Budget("Budget Test 1", 1000.00, 14, c);
         bl.add(b);
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.editBudget(bl);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -115,8 +115,8 @@ public class BudgetCntlTest {
     @Test
     public void testToNavigationUI() {
         System.out.println("toNavigationUI");
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         instance.toNavigationUI();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -128,8 +128,8 @@ public class BudgetCntlTest {
     @Test
     public void testGetCurrentBudgetList() {
         System.out.println("getCurrentBudgetList");
-        NavigationCntl p = new NavigationCntl("aim5627");
-        BudgetCntl instance = new BudgetCntl("aim5627", p);
+        NavigationCntl p = new NavigationCntl("aim5627", true);
+        BudgetCntl instance = new BudgetCntl("aim5627", p, true, true);
         ArrayList<Budget> expResult = new ArrayList<Budget>();
         ArrayList<Category> c = new ArrayList<Category>();
         Budget b = new Budget("Budget Test 1", 1000.00, 14, c);

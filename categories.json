@@ -1,1 +1,1 @@
-[{"name":"Test Category 1","amount":500.0,"currentAmount":500.0,"budgetName":"Test Budget 1","transactions":[]},{"name":"Test Category 2","amount":250.0,"currentAmount":250.0,"budgetName":"Test Budget 1","transactions":[]},{"name":"Test Category 3","amount":300.0,"currentAmount":300.0,"budgetName":"Test Budget 2","transactions":[]}]
+[{"name":"Food","amount":1000.0,"currentAmount":1000.0,"budgetName":"Home","transactions":[]}]

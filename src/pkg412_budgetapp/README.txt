@@ -29,7 +29,7 @@ navigation buttons link to the following pages:
     -In this section, the user is able to see the different transactions that
     they have made.
     -They are able to download the fill list of transactions to a text file by 
-    clicking on the "Print Transaction History To a Text File" button.
+    clicking on the "Print Transaction History To a Text File" button. It is saved to "history.txt" at the top of the repository.
     -A user can view information about a specific budget by clicking on the 
     "View Budget History" button. To use this page, select the budget from the 
     drop down and click the "Open Budget" button. This will show the list of 

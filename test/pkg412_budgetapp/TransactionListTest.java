@@ -46,7 +46,7 @@ public class TransactionListTest {
         System.out.println("setTransactionList");
         ArrayList<Transaction> tl = new ArrayList<Transaction>();
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        Transaction t = new Transaction(0, "Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
         tl.add(t);
         TransactionList instance = new TransactionList(tl);
         instance.setTransactionList(tl);
@@ -63,7 +63,7 @@ public class TransactionListTest {
         
         ArrayList<Transaction> tl = new ArrayList<Transaction>();
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        Transaction t = new Transaction(0, "Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
         tl.add(t);
         TransactionList instance = new TransactionList(tl);
         
@@ -82,7 +82,7 @@ public class TransactionListTest {
         System.out.println("addTransaction");
         ArrayList<Transaction> tl = new ArrayList<Transaction>();
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        Transaction t = new Transaction(0, "Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
         tl.add(t);
         TransactionList instance = new TransactionList(tl);
         instance.addTransaction(t);
@@ -100,7 +100,7 @@ public class TransactionListTest {
         
         ArrayList<Transaction> tl = new ArrayList<Transaction>();
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        Transaction t = new Transaction(0, "Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
         tl.add(t);
         TransactionList instance = new TransactionList(tl);
         
@@ -119,7 +119,7 @@ public class TransactionListTest {
         
         ArrayList<Transaction> tl = new ArrayList<Transaction>();
         //String n, double a, String tt, String cn, int m, int d, int y, String pl, String descr
-        Transaction t = new Transaction("Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
+        Transaction t = new Transaction(0, "Test Transaction 1", 10.00, "withdraw", "Test Category 1", 10, 25, 2016, "Target", "bought clothes");
         tl.add(t);
         TransactionList instance = new TransactionList(tl);
         
